@@ -1,0 +1,9 @@
+# On démarre le moteur de réécriture, serveur apache seulement
+# // http://cours-php/controleur/methode/parametres
+# // http://cours-php/annonces/details/brouette
+# // On créer un système de réécriture d'URL ( htaccess )
+# // http://cours-php/index.php?p=annonces/details/brouette
+RewriteEngine On
+
+# On réécrit l'URL
+RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1
