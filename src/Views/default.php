@@ -28,17 +28,12 @@
                     </ul>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <?php 
-                        if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>
-                            <?php if(isset($_SESSION['user']['roles']) && in_array('ROLE_ADMIN', $_SESSION['user']['roles'])): ?>   
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/admin">Admin</a>
-                                </li>
-                             <?php endif; ?>   
+                        if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>   
                             <li class="nav-item">
-                                <a class="nav-link" href="/users/profil">Profil</a>
+                                <a class="nav-link" href="/admin/index">Administration</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/users/logout">Déconnexion</a>
+                                <a class="nav-link" href="/employes/logout">Déconnexion</a>
                             </li>
                         <?php endif; ?>
                     </ul>
