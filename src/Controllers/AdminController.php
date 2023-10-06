@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AnnoncesModel;
-use App\Models\UsersModel;
+use App\Models\EmployesModel;
 use App\Core\Form;
 
 class AdminController extends Controller
@@ -58,7 +58,7 @@ class AdminController extends Controller
         $pass = password_hash($_POST['password'], PASSWORD_BCRYPT);
         
         // On stock l'utilisateur en base de données
-        $user = new UsersModel;
+        $user = new EmployesModel;
 
         $user->setEmail($email)
             ->setPassword($pass);
