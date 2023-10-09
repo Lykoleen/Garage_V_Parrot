@@ -61,6 +61,29 @@ class AnnoncesModel extends Model
     }
 
     /**
+     * Get the value of years
+     *
+     * @return integer
+     */
+    public function getYears(): int
+    {
+        return $this->years;
+    }
+
+    /**
+     * Set the value of years
+     *
+     * @param [type] $years
+     * @return self
+     */
+    public function setYears($years): self
+    {
+        $this->years = $years;
+
+        return $this;
+    }
+
+    /**
      * Get the value of price
      */ 
     public function getPrice(): float

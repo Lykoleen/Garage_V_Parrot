@@ -167,6 +167,40 @@ class Form
 
         return $this;
     }
+    
+    public function ajoutRadio(array $options, array $labelForValues, array $attributs = []): self
+    {
+        // On ouvre la div
+        $this->formCode .= "<div class=\"form-check\">";
+        
+        foreach($options as $key => $values) {
+            // On ouvre une div pour chaque paire
+            $this->formCode .= "<div class=\"radio-pair\">";
+            
+            // On ajoute l'input avec type, classe et name fixe
+            $this->formCode .= "<input type=\"radio\" class=\"form-check-input\" name=\"energy\" ";
+
+            // On ajoute les attributs personnalisables
+            $inputAttributs = $this->ajoutAttributs($attributs);
+            $this->formCode .= "$inputAttributs >";
+
+            // On ajoute le label
+            $labelFor = isset($labelForValues[$key]) ? $labelForValues[$key] : '';
+            $this->formCode .= "<label class=\"form-check-label\" for=\"$labelFor\">";
+
+            // On ajoute le texte du label
+            $this->formCode .= $values;
+
+            // On ferme le label et la div
+            $this->formCode .= "</label></div>";
+        }
+
+        // On ferme la div
+        $this->formCode .= "</div>";
+
+        return $this;
+
+    }
 }   
 
 ?>

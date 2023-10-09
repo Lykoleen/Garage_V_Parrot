@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\AnnoncesModel;
-use App\Models\FakerModel;
 use App\Core\Form;
 
 class AnnoncesController extends Controller
@@ -42,19 +41,27 @@ class AnnoncesController extends Controller
         if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) {
             // L'utilisateur est connecté
             // On vérifie si le formulaire est complet
-            if (Form::validate($_POST, ['titre', 'description'])) {
+            if (Form::validate($_POST, ['titre', 'years', 'price', 'mileage','description', 'energy'])) {
                 // Le formulaire est complet
                 // On se protège contre les failles xss
                 // strip_tags, htmlentities, htmlspecialchars
                 $titre = strip_tags($_POST['titre']);
+                $years = strip_tags($_POST['years']);
+                $price = strip_tags($_POST['price']);
+                $mileage = strip_tags($_POST['mileage']);
                 $description = strip_tags($_POST['description']);
+                $energy = strip_tags($_POST['energy']);
 
                 // ON instancie notre modèle
                 $annonce = new AnnoncesModel;
 
                 // On hydrate
                 $annonce->setTitre($titre)
-                    ->setDescription($description);
+                    ->setYears($years)
+                    ->setPrice($price)
+                    ->setMileage($mileage)
+                    ->setDescription($description)
+                    ->setEnergy($energy);
 
                 // On enregistre
                 $annonce->create();
@@ -67,8 +74,11 @@ class AnnoncesController extends Controller
                 // Le formulaire n'est pas complet
                 $_SESSION['erreur'] = !empty($_POST) ? "Tous les champs du formulaire ne sont pas remplis" : "";
                 $titre = isset($_POST['titre']) ? strip_tags($_POST['titre']) : '';
+                $years = isset($_POST['years']) ? strip_tags($_POST['years']) : '';
+                $price = isset($_POST['price']) ? strip_tags($_POST['price']) : '';
+                $mileage = isset($_POST['mileage']) ? strip_tags($_POST['mileage']) : '';
                 $description = isset($_POST['description']) ? strip_tags($_POST['description']) : '';
-
+                $energy = isset($_POST['energy']) ? strip_tags($_POST['energy']) : '';
             }
 
 
@@ -81,8 +91,27 @@ class AnnoncesController extends Controller
                     'titre',
                     ['id' => 'titre', 'class' => 'form-control', 'value' => $titre]
                 )
+                ->ajoutLabelFor('price', 'Prix :')
+                ->ajoutInput('number', 
+                'price', 
+                ['id' => 'price', 'class' => 'form-control', 'value' => $price]
+                )
+                ->ajoutLabelFor('years', 'Année :')
+                ->ajoutInput('number', 
+                'years', 
+                ['id' => 'years', 'class' => 'form-control', 'value' => $years]
+                )
+                ->ajoutLabelFor('mileage', 'Kilométrage')
+                ->ajoutInput('number', 'mileage', ['id' => 'mileage', 'class' => 'form-control', 'value' => $mileage]
+                )
+                ->ajoutLabelFor('', 'Type(s) de carburant :')
+                ->ajoutRadio(
+                ['Diesel', 'Essence', 'Hybride', 'Electrique'],
+                ['Diesel', 'Essence', 'Hybride', 'Electrique'],
+                
+                )
                 ->ajoutLabelFor('description', 'Texte de l\'annonce')
-                ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '20', 'class' => 'form-control'])
+                ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '15', 'class' => 'form-control'])
                 // Cette partie est un exemple pour importer des images
                 ->ajoutLabelFor('image', 'Image :')
                 ->ajoutInput(
