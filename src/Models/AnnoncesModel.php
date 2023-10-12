@@ -5,7 +5,7 @@ namespace App\Models;
 class AnnoncesModel extends Model
 {
     protected $id;
-    protected $titre;
+    protected $title;
     protected $years;
     protected $price;
     protected $mileage;
@@ -41,21 +41,21 @@ class AnnoncesModel extends Model
     }
 
     /**
-     * Get the value of titre
+     * Get the value of title
      */ 
-    public function getTitre(): string
+    public function gettitle(): string
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
-     * Set the value of titre
+     * Set the value of title
      *
      * @return  self
      */ 
-    public function setTitre($titre): self
+    public function settitle($title): self
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }

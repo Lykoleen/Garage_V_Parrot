@@ -58,7 +58,7 @@ class EmployesController extends Controller
             ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
             ->ajoutLabelFor('pass', 'Mot de passe : ')
             ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control'])
-            ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary']) 
+            ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
         ->finForm();
 
         $this->render('employes/login', ['loginForm' => $form->create()]);

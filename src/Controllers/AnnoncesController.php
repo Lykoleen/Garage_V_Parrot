@@ -41,11 +41,11 @@ class AnnoncesController extends Controller
         if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) {
             // L'utilisateur est connecté
             // On vérifie si le formulaire est complet
-            if (Form::validate($_POST, ['titre', 'years', 'price', 'mileage','description', 'energy'])) {
+            if (Form::validate($_POST, ['title', 'years', 'price', 'mileage','description', 'energy'])) {
                 // Le formulaire est complet
                 // On se protège contre les failles xss
                 // strip_tags, htmlentities, htmlspecialchars
-                $titre = strip_tags($_POST['titre']);
+                $title = strip_tags($_POST['title']);
                 $years = strip_tags($_POST['years']);
                 $price = strip_tags($_POST['price']);
                 $mileage = strip_tags($_POST['mileage']);
@@ -56,7 +56,7 @@ class AnnoncesController extends Controller
                 $annonce = new AnnoncesModel;
 
                 // On hydrate
-                $annonce->setTitre($titre)
+                $annonce->setTitle($title)
                     ->setYears($years)
                     ->setPrice($price)
                     ->setMileage($mileage)
@@ -73,7 +73,7 @@ class AnnoncesController extends Controller
             } else {
                 // Le formulaire n'est pas complet
                 $_SESSION['erreur'] = !empty($_POST) ? "Tous les champs du formulaire ne sont pas remplis" : "";
-                $titre = isset($_POST['titre']) ? strip_tags($_POST['titre']) : '';
+                $title = isset($_POST['title']) ? strip_tags($_POST['title']) : '';
                 $years = isset($_POST['years']) ? strip_tags($_POST['years']) : '';
                 $price = isset($_POST['price']) ? strip_tags($_POST['price']) : '';
                 $mileage = isset($_POST['mileage']) ? strip_tags($_POST['mileage']) : '';
@@ -83,13 +83,14 @@ class AnnoncesController extends Controller
 
 
             $form = new Form;
+            $formPourImages = new Form;
 
-            $form->debutForm('post', '#', ['encthype' => 'multipart/formdata']) // Params ne servent que pour l'insertion d'images
-                ->ajoutLabelFor('titre', 'Titre de l\'annonce :')
+            $form->debutForm() // Params ne servent que pour l'insertion d'images
+                ->ajoutLabelFor('title', 'Titre de l\'annonce :')
                 ->ajoutInput(
                     'text',
-                    'titre',
-                    ['id' => 'titre', 'class' => 'form-control', 'value' => $titre]
+                    'title',
+                    ['id' => 'title', 'class' => 'form-control', 'value' => $title]
                 )
                 ->ajoutLabelFor('price', 'Prix :')
                 ->ajoutInput('number', 
@@ -105,25 +106,29 @@ class AnnoncesController extends Controller
                 ->ajoutInput('number', 'mileage', ['id' => 'mileage', 'class' => 'form-control', 'value' => $mileage]
                 )
                 ->ajoutLabelFor('', 'Type(s) de carburant :')
-                ->ajoutRadio(
+                ->ajoutRadio( 
                 ['Diesel', 'Essence', 'Hybride', 'Electrique'],
                 ['Diesel', 'Essence', 'Hybride', 'Electrique'],
-                
+                ['name' => 'energy']
                 )
                 ->ajoutLabelFor('description', 'Texte de l\'annonce')
                 ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '15', 'class' => 'form-control'])
-                // Cette partie est un exemple pour importer des images
-                ->ajoutLabelFor('image', 'Image :')
-                ->ajoutInput(
-                    'file',
-                    'image',
-                    ['id' => 'image', 'class' => 'form-control']
-                )
-                // >Fin de l'exemple
+                
                 ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary', 'name' => 'Ajouter'])
                 ->finForm();
-
-            $this->render('annonces/ajouter', ['form' => $form->create()]);
+            
+                // Formulaire d'ajout des images
+            $formPourImages->debutForm('post', '/upload/upload', ['class' => 'dropzone','enctype' => 'multipart/form-data'])
+                ->ajoutLabelFor('file', 'Image :')
+                ->ajoutInput(
+                    'file',
+                    'file',
+                    ['id' => 'file', 'class' => 'form-control'],
+                    'multiple'
+                )
+                ->ajoutBouton('Envoyer', ['class' => 'btn btn-primary']);
+               
+            $this->render('annonces/ajouter', ['form' => $form->create(), 'formPourImages' => $formPourImages->create()]);
         } else {
             // L'utilisateur n'est pas connecté
             $_SESSION['erreur'] = "Vous devez être connecté(e) pour pouvoir accéder à cette page";
@@ -159,12 +164,12 @@ class AnnoncesController extends Controller
                         exit;
                     }
                 }
-
+            
 
             // On traite le formulaire
-            if (Form::validate($_POST, ['titre', 'description'])) {
+            if (Form::validate($_POST, ['title', 'description'])) {
                 // ON se protège des failles xss
-                $titre = strip_tags($_POST['titre']);
+                $title = strip_tags($_POST['title']);
                 $description = strip_tags($_POST['description']);
 
                 // On stocke l'annonce
@@ -172,7 +177,7 @@ class AnnoncesController extends Controller
 
                 // On hydrate
                 $annonceModif
-                    ->setTitre($titre)
+                    ->settitle($title)
                     ->setDescription($description);
 
                 // On met à jour l'annonce
@@ -188,12 +193,12 @@ class AnnoncesController extends Controller
             $form = new Form;
 
             $form->debutForm()
-                ->ajoutLabelFor('titre', 'Titre de l\'annonce :')
-                ->ajoutInput('text', 'titre', [
-                    'id' => 'titre',
+                ->ajoutLabelFor('title', 'title de l\'annonce :')
+                ->ajoutInput('text', 'title', [
+                    'id' => 'title',
                     'class' =>
                     'form-control',
-                    'value' => $annonce['titre']
+                    'value' => $annonce['title']
                 ])
                 ->ajoutLabelFor('description', 'Texte de l\'annonce')
                 ->ajoutTextarea(
@@ -216,4 +221,5 @@ class AnnoncesController extends Controller
             exit;
         }
     }
+
 }

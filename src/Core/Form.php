@@ -49,19 +49,22 @@ class Form
         // On intialise une chaine de caractères
         $str = '';
 
-        // On liste les attributs 'courts'
-        $courts = ['checked', 'disabled', 'readonly', 'multiple', 'required', 'autofocus', 'novalidate', 'formnovalidate'];
+         // On liste les attributs 'courts'
+         $courts = ['checked', 'disabled', 'readonly', 'multiple', 'required', 'autofocus', 'novalidate', 'formnovalidate'];
 
-        // On boucle sur le tableau d'attibuts
-        foreach($attributs as $attribut => $valeur){
-            // Si l'attribut est dans la liste des attributs courts
-            if(in_array($attribut, $courts) && $valeur == true){
-                $str .= " $attribut";
-            } else {
-                // On ajoute attribut = 'valeur'
-                $str .= " $attribut=\"$valeur\"";
-            }
-        }
+         // On boucle sur le tableau d'attibuts
+         foreach($attributs as $attribut => $valeur){
+             // Si l'attribut est dans la liste des attributs courts
+             if(in_array($attribut, $courts) && $valeur == true){
+                 $str .= " $attribut";
+                
+             } else {
+                 // On ajoute attribut = 'valeur'
+                 $str .= " $attribut=\"$valeur\"";
+                
+             }
+         }
+ 
 
         return $str;
     }
@@ -110,13 +113,18 @@ class Form
         return $this;
     }
 
-    public function ajoutInput(string $type, string $nom, array $attributs = []): self
+    public function ajoutInput(string $type, string $nom, array $attributs = [], ?string $attributCourt = null): self
     {  
         // On ouvre la balise
         $this->formCode .= "<input type='$type' name='$nom'";
 
-        // On ajoute les attributs
-        $this->formCode .= $attributs ? $this->ajoutAttributs($attributs).'>' : '>';
+        // On ajoute les attributs "longs"
+        if($attributCourt !== null && isset($attributs)) {
+            $this->formCode .= $this->ajoutAttributs($attributs).' ';
+            $this->formCode .= $attributCourt. '>';
+        } else {
+            $this->formCode .= $attributs ? $this->ajoutAttributs($attributs).'>' : '>';
+        }
 
         return $this;
     }
@@ -178,7 +186,7 @@ class Form
             $this->formCode .= "<div class=\"radio-pair\">";
             
             // On ajoute l'input avec type, classe et name fixe
-            $this->formCode .= "<input type=\"radio\" class=\"form-check-input\" name=\"energy\" ";
+            $this->formCode .= "<input type=\"radio\" class=\"form-check-input\" value=\"$values\" ";
 
             // On ajoute les attributs personnalisables
             $inputAttributs = $this->ajoutAttributs($attributs);
