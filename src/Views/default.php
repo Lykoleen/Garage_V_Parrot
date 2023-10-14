@@ -31,7 +31,7 @@
                         <?php 
                         if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>   
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/index">Administration</a>
+                                <a class="nav-link" href="/employes/index">Administration</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/employes/logout">Déconnexion</a>

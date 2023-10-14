@@ -147,23 +147,15 @@ class AnnoncesController extends Controller
                 exit;
             }
 
-            // On vérifie si l'utilisateur est propriétaire de l'annonce ou admin
-            
-                if ($annonce['users_id'] !== $_SESSION['user']['id']) {
-                    if(!in_array('ROLE_ADMIN', $_SESSION['user']['roles']))
-                    {
-                        $_SESSION['erreur'] = "Vous n'avez pas accès à cette page";
-                        header('Location: /annonces');
-                        exit;
-                    }
-                }
-            
-
             // On traite le formulaire
-            if (Form::validate($_POST, ['title', 'description'])) {
+            if (Form::validate($_POST, ['title','price' ,'years' ,'mileage' ,'description', 'energy'])) {
                 // ON se protège des failles xss
                 $title = strip_tags($_POST['title']);
+                $price = strip_tags($_POST['price']);
+                $years = strip_tags($_POST['years']);
+                $mileage = strip_tags($_POST['mileage']);
                 $description = strip_tags($_POST['description']);
+                $energy = strip_tags($_POST['energy']);
 
                 // On stocke l'annonce
                 $annonceModif = new AnnoncesModel;
@@ -171,7 +163,11 @@ class AnnoncesController extends Controller
                 // On hydrate
                 $annonceModif
                     ->settitle($title)
-                    ->setDescription($description);
+                    ->setPrice($price)
+                    ->setYears($years)
+                    ->setMileage($mileage)
+                    ->setDescription($description)
+                    ->setEnergy($energy);
 
                 // On met à jour l'annonce
                 $annonceModif->update($annonce['id']);
@@ -180,24 +176,50 @@ class AnnoncesController extends Controller
                 $_SESSION['message'] = "Votre annonce a été modifiée avec succès";
                 header('Location: /');
                 exit;
+            } else {
+                // Le formulaire n'est pas complet
+                $_SESSION['erreur'] = !empty($_POST) ? "Tous les champs du formulaire ne sont pas remplis" : "";
             }
 
 
             $form = new Form;
 
             $form->debutForm()
-                ->ajoutLabelFor('title', 'title de l\'annonce :')
+                ->ajoutLabelFor('title', 'titre de l\'annonce :')
                 ->ajoutInput('text', 'title', [
                     'id' => 'title',
-                    'class' =>
-                    'form-control',
+                    'class' => 'form-control',
                     'value' => $annonce['title']
                 ])
-                ->ajoutLabelFor('description', 'Texte de l\'annonce')
+                ->ajoutLabelFor('price', 'Prix :')
+                ->ajoutInput('number', 'price', [
+                    'id' => 'price',
+                    'class' => 'form-control',
+                    'value' => $annonce['price']
+                ])
+                ->ajoutLabelFor('years', 'Année :')
+                ->ajoutInput('number', 'years', [
+                    'id' => 'years',
+                    'class' => 'form-control',
+                    'value' => $annonce['years']
+                ])
+                ->ajoutLabelFor('mileage', 'Kilométrage :')
+                ->ajoutInput('number', 'mileage', [
+                    'id' => 'mileage',
+                    'class' => 'form-control',
+                    'value' => $annonce['mileage']
+                ])
+                ->ajoutLabelFor('description', 'Description :')
                 ->ajoutTextarea(
                     'description',
                     $annonce['description'],
-                    ['id' => 'description', 'class' => 'form-control']
+                    ['id' => 'description','rows' => '10', 'cols' => '10', 'class' => 'form-control', 'max-length' => '4000']
+                )
+                ->ajoutLabelFor('energy', 'Séléctionner le carburant avant de valider :', ['class' => 'text-danger fs-3 '])
+                ->ajoutRadio( 
+                ['Diesel', 'Essence', 'Hybride', 'Electrique'],
+                ['Diesel', 'Essence', 'Hybride', 'Electrique'],
+                ['name' => 'energy', 'id' => 'energy']
                 )
                 ->ajoutBouton(
                     'Modifier l\'annonce',
