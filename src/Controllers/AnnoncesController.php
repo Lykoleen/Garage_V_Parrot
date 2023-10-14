@@ -34,7 +34,6 @@ class AnnoncesController extends Controller
     }
 
 
-
     public function ajouter()
     {
         // On vérifie si l'utilisateur est connecté
@@ -49,7 +48,7 @@ class AnnoncesController extends Controller
                 $years = strip_tags($_POST['years']);
                 $price = strip_tags($_POST['price']);
                 $mileage = strip_tags($_POST['mileage']);
-                $description = strip_tags($_POST['description']);
+                $description = strip_tags(nl2br($_POST['description']));
                 $energy = strip_tags($_POST['energy']);
 
                 // ON instancie notre modèle
@@ -112,21 +111,15 @@ class AnnoncesController extends Controller
                 ['name' => 'energy']
                 )
                 ->ajoutLabelFor('description', 'Texte de l\'annonce')
-                ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '15', 'class' => 'form-control'])
+                ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '15', 'col' => '20', 'class' => 'form-control', 'max-length' => '4000'])
                 
                 ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary', 'name' => 'Ajouter'])
                 ->finForm();
             
                 // Formulaire d'ajout des images
             $formPourImages->debutForm('post', '/upload/upload', ['class' => 'dropzone','enctype' => 'multipart/form-data'])
-                ->ajoutLabelFor('file', 'Image :')
-                ->ajoutInput(
-                    'file',
-                    'file',
-                    ['id' => 'file', 'class' => 'form-control'],
-                    'multiple'
-                )
-                ->ajoutBouton('Envoyer', ['class' => 'btn btn-primary']);
+                
+                ->finForm();
                
             $this->render('annonces/ajouter', ['form' => $form->create(), 'formPourImages' => $formPourImages->create()]);
         } else {
@@ -220,6 +213,19 @@ class AnnoncesController extends Controller
             header('Location: /');
             exit;
         }
+    }
+
+    /**
+     * Supprime une annonce si on est admin
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function supprimeAnnonce(int $id)
+    {
+            $annonce = new AnnoncesModel;
+            $annonce->delete($id);
+            header('Location: '.$_SERVER['HTTP_REFERER']);   
     }
 
 }

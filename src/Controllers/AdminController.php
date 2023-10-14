@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\AnnoncesModel;
 use App\Models\EmployesModel;
 use App\Core\Form;
 
@@ -13,7 +12,7 @@ class AdminController extends Controller
         // On vérifie si on est admin
         if(in_array('ROLE_EMPLOYE', $_SESSION['user']['roles']) || $this->isAdmin())
         {
-            $this->render('admin/index');
+            $this->render('employes/index');
         }
     }
 

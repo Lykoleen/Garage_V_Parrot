@@ -7,6 +7,6 @@
         <li><a href="/admin/accounts">Gérer les comptes employés</a></li>
     <?php endif; ?>
     
-    <li><a href="/admin/annonces">Gérer les annonces</a></li>
-    <li><a href="/admin/avis">Gérer les avis clients</a></li>
+    <li><a href="/employes/annonces">Gérer les annonces</a></li>
+    <li><a href="/employes/avis">Gérer les avis clients</a></li>
 </ul>
