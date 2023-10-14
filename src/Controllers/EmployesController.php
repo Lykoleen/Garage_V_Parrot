@@ -3,10 +3,31 @@
 namespace App\Controllers;
 
 use App\Core\Form;
+use App\Models\AnnoncesModel;
 use App\Models\employesModel;
 
 class EmployesController extends Controller
 {
+    public function index()
+    {
+        // On vérifie si on est connecté
+        if(in_array('ROLE_EMPLOYE', $_SESSION['user']['roles']) || in_array('ROLE_ADMIN', $_SESSION['user']['roles']))
+        {
+            $this->render('employes/index');
+        }
+    }
+
+    public function annonces()
+    {
+        if(in_array('ROLE_EMPLOYE', $_SESSION['user']['roles']) || in_array('ROLE_ADMIN', $_SESSION['user']['roles']))
+        {
+            $annoncesModel = new AnnoncesModel;
+
+            $annonces = $annoncesModel->findAll();
+
+            $this->render('employes/annonces', compact('annonces'));
+        }
+    }
 
     /**
      * Connexion des utilisateurs

@@ -7,16 +7,6 @@ use App\Core\Form;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-        // On vérifie si on est admin
-        if(in_array('ROLE_EMPLOYE', $_SESSION['user']['roles']) || $this->isAdmin())
-        {
-            $this->render('employes/index');
-        }
-    }
-
-
     /**
      * Vérifie si on est admin
      *

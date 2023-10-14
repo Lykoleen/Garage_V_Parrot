@@ -216,16 +216,19 @@ class AnnoncesController extends Controller
     }
 
     /**
-     * Supprime une annonce si on est admin
+     * Supprime une annonce si on est connecté
      *
      * @param [type] $id
      * @return void
      */
     public function supprimeAnnonce(int $id)
     {
+        if (isset($_SESSION['user']) && !empty($_SESSION['user']['id']))
+        {
             $annonce = new AnnoncesModel;
             $annonce->delete($id);
             header('Location: '.$_SERVER['HTTP_REFERER']);   
+        }
     }
 
 }
