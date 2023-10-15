@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Form;
 use App\Models\AnnoncesModel;
-use App\Models\employesModel;
+use App\Models\EmployesModel;
 
 class EmployesController extends Controller
 {
@@ -29,6 +29,7 @@ class EmployesController extends Controller
         }
     }
 
+  
     /**
      * Connexion des utilisateurs
      *
@@ -60,7 +61,7 @@ class EmployesController extends Controller
             {
                 // Le mot de passe est bon, on créer la session
                 $user->setSession();
-                header('Location: /admin/index');
+                header('Location: /employes/index');
                 exit;
             } else
             {

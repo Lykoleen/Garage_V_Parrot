@@ -1,4 +1,6 @@
-<h1>Listes de toutes les annonces</h1>
+<h1 class="mt-2">Listes de toutes les annonces</h1>
+
+<a href="/annonces/ajouter"><button class="btn btn-outline-success my-3">Ajouter une annonce</button></a>
 
 <table class="table table-striped">
     <thead>
@@ -18,7 +20,7 @@
                 <td><?= $annonce['mileage'] ?></td>
                 <td><?= $annonce['energy'] ?></td>
                 <td>
-                    <a href="/annonces/modifier/<?= $annonce['id'] ?>" class="btn btn-warning">Modifier</a><a href="/annonces/supprimeAnnonce/<?= $annonce['id'] ?>" class="btn btn-danger">Supprimer</a>
+                    <a href="/annonces/modifier/<?= $annonce['id'] ?>" class="btn btn-warning">Modifier</a><a href="/annonces/supprimeAnnonce/<?= $annonce['id'] ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette annonce définitivement ?')">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>

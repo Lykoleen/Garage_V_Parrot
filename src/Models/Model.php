@@ -25,6 +25,13 @@ class Model extends Db
         return $query->fetchAll();
     }
 
+    public function findAllRoleEmploye()
+    {
+        $query = $this->querys("SELECT * FROM " . $this->table . " WHERE roles = '[\"ROLE_EMPLOYE\"]'");
+        return $query->fetchAll();
+    }
+
+
     public function findBy(array $criteres)
     {
         $champs = [];

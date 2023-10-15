@@ -28,6 +28,24 @@ class AdminController extends Controller
     }
 
     /**
+     * Liste des employés
+     *
+     * @return void
+     */
+    public function listeEmployes()
+    {
+        if($this->isAdmin())
+        {
+                $employesModel = new EmployesModel;
+    
+                $listeEmployes = $employesModel->findAllRoleEmploye();
+    
+                $this->render('admin/employes/liste', compact('listeEmployes'));
+
+        }
+    }
+
+    /**
      * Inscription des utilisateurs
      *
      * @return void
@@ -53,6 +71,10 @@ class AdminController extends Controller
             ->setPassword($pass);
 
         $user->create();
+
+        $_SESSION['message'] = "Nouvel employé enregistré avec succès";
+        header('Location: /admin/listeEmployes');
+        exit;
        }
 
 
@@ -63,13 +85,84 @@ class AdminController extends Controller
             ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
             ->ajoutLabelFor('pass', 'Mot de passe : ')
             ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control'])
-            ->ajoutBouton('M\'inscrire', ['class' => 'btn btn-primary'])
+            ->ajoutBouton('Enregistrer', ['class' => 'btn btn-primary'])
             ->finForm()
             ;
 
-            $this->render('admin/register', ['registerForm' => $form->create()]);
+            $this->render('admin/employes/register', ['registerForm' => $form->create()]);
         }
     }
-       
+    
+    /**
+     * Modifier les logs d'un employé
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function modifier(int $id)
+    {
+        if($this->isAdmin())
+        {
+            $employesModel = new EmployesModel;
 
+            $employe = $employesModel->find($id);
+
+            // Si l'employé n'existe pas, on retourne à la liste des employés
+            if (!$employe) {
+                $_SESSION['erreur'] = "L'employé recherché n'existe pas";
+                header('Location: /admin/employes/liste');
+                exit;
+            }
+
+            if (Form::validate($_POST, ['email', 'password'])) {
+                // On se protège des failles xss
+                $email = strip_tags($_POST['email']);
+                $password = strip_tags($_POST['password']);
+
+                $employeModif = new EmployesModel;
+
+                $employeModif
+                    ->setEmail($email)
+                    ->setPassword($password);
+
+                $employeModif->update($employe['id']);
+
+                $_SESSION['message'] = 'Un compte employé a été modifié avec succès';
+                header('Location: /admin/listeEmployes');
+                exit;
+            } else {
+                // Le formulaire n'est pas complet
+                $_SESSION['erreur'] = !empty($_POST) ? "Tous les champs doivent être remplis" : "";
+            }
+
+            
+        $form = new Form;
+
+        $form->debutForm()
+            ->ajoutLabelFor('email', 'E-mail :')
+            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'value' => $employe['email']])
+            ->ajoutLabelFor('pass', 'Mot de passe : ')
+            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control', 'value' => $employe['password']])
+            ->ajoutBouton('Modifier', ['class' => 'btn btn-primary'])
+            ->finForm()
+            ;
+
+            $this->render('admin/employes/modifier', ['modifEmploye' => $form->create()]);
+        } else {
+            // L'utilisateur n'est pas connecté
+            $_SESSION['erreur'] = "Vous devez être connecté(e) pour pouvoir accéder à cette page";
+            header('Location: /');
+            exit;
+        }
+    }
+    
+    public function supprimeEmploye(int $id)
+    {
+        if($this->isAdmin())
+        {
+                $employe = new EmployesModel;
+                $employe->delete($id);
+                header('Location: '.$_SERVER['HTTP_REFERER']);
+        }
+    }
 }
