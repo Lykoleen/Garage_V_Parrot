@@ -12,7 +12,7 @@ class AdminController extends Controller
      *
      * @return boolean
      */
-    private function isAdmin()
+    public function isAdmin()
     {
         // On vérifie si on est connecté et si "ROLE_ADMIN" est dans nos rôles
         if(isset($_SESSION['user']) && in_array('ROLE_ADMIN', $_SESSION['user']['roles']))
@@ -75,7 +75,11 @@ class AdminController extends Controller
         $_SESSION['message'] = "Nouvel employé enregistré avec succès";
         header('Location: /admin/listeEmployes');
         exit;
-       }
+       } else {
+            // Le formulaire n'est pas complet
+            $_SESSION['erreur'] = !empty($_POST) ? "Le forumlaire n'est pas complet" : "";
+        }
+
 
 
         $form = new Form;
@@ -110,14 +114,14 @@ class AdminController extends Controller
             // Si l'employé n'existe pas, on retourne à la liste des employés
             if (!$employe) {
                 $_SESSION['erreur'] = "L'employé recherché n'existe pas";
-                header('Location: /admin/employes/liste');
+                header('Location: /admin/listeEmployes');
                 exit;
             }
 
             if (Form::validate($_POST, ['email', 'password'])) {
                 // On se protège des failles xss
                 $email = strip_tags($_POST['email']);
-                $password = strip_tags($_POST['password']);
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
                 $employeModif = new EmployesModel;
 

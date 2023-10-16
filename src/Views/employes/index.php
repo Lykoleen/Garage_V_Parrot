@@ -3,7 +3,7 @@
 <ul>
     <?php if(isset($_SESSION['user']['roles']) && in_array('ROLE_ADMIN', $_SESSION['user']['roles'])): ?>   
         <li><a href="/admin/schedules">Gérer les horaires d'ouvertures</a></li>
-        <li><a href="/admin/services">Gérer les services</a></li>
+        <li><a href="/services/listeServices">Gérer les services</a></li>
         <li><a href="/admin/listeEmployes">Gérer les comptes employés</a></li>
     <?php endif; ?>
     
