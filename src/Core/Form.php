@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Utils\Utils;
 use BadFunctionCallException;
 
 class Form 
@@ -172,6 +173,48 @@ class Form
 
         // On ajoute le texte et on ferme
         $this->formCode .= ">$texte</button>";
+
+        return $this;
+    }
+
+    public function ajoutTableHorairesOuvertures(): self
+    {
+        $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+        $tranchesHoraires = new Utils;
+
+        $matinOuverture = $tranchesHoraires->tranchesHoraires();
+        $matinFermeture = $tranchesHoraires->tranchesHoraires();
+        $apremOuverture = $tranchesHoraires->tranchesHoraires();
+        $apremFermeture = $tranchesHoraires->tranchesHoraires();
+
+        $this->formCode .= "<table>";
+            $this->formCode .= "<tr>";
+                $this->formCode .= "<th>Jour</th>";
+                $this->formCode .= "<th>Matin</th>";
+                $this->formCode .= "<th>Après-midi</th>";
+            $this->formCode .= "</tr>";
+            foreach ($joursSemaine as $jours) {
+                $this->formCode .= "<tr>";
+                    $this->formCode .= "<td>$jours</td>";
+                    $this->formCode .= "<td>";
+                        $this->formCode .= "<select name=\"$jours\"_matin_ouverture";
+                            $this->formCode .= $matinOuverture;
+                        $this->formCode .= "</select>";
+                        $this->formCode .= "<select name=\"$jours\"_matin_fermeture";
+                            $this->formCode .= $matinFermeture;
+                        $this->formCode .= "</select>";
+                    $this->formCode .= "</td>";
+                    $this->formCode .= "<td>";
+                        $this->formCode .= "<select name=\"$jours\"_aprem_ouverture";
+                            $this->formCode .= $apremOuverture;
+                        $this->formCode .= "</select>";
+                        $this->formCode .= "<select name=\"$jours\"_aprem_fermeture";
+                            $this->formCode .= $apremFermeture;
+                        $this->formCode .= "</select>";
+                    $this->formCode .= "</td>";
+                $this->formCode .= "</tr>";
+            }
 
         return $this;
     }
