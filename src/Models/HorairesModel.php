@@ -16,6 +16,14 @@ class HorairesModel extends Model
         $this->table = 'horaires';
     }
     
+    public function horairesModif(string $jour, string $plage, ?string $ouverture, ?string $fermeture, int $ferme = 0)
+    {
+        return $this->querys("UPDATE " .$this->table. " SET 
+        ouverture = '$ouverture', 
+        fermeture = '$fermeture', 
+        ferme = '$ferme'
+        WHERE jour = '$jour' AND plage = '$plage';");
+    }
 
     /**
      * Get the value of id
