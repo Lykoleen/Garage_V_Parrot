@@ -16,45 +16,51 @@ class HorairesController extends Controller
         $isAdmin = $instanceAdmin->isAdmin();
 
         if ($isAdmin) {
-            
-            $horaires = new HorairesModel;
-            $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-            
-            
-            foreach ($joursSemaine as $jours) {
-                $matin_ouverture = isset($_POST[$jours.'_matin_ouverture']) ? $_POST[$jours.'_matin_ouverture'] : '';
-                $matin_fermeture = isset($_POST[$jours.'_matin_fermeture']) ? $_POST[$jours.'_matin_fermeture'] : '';
-                $aprem_ouverture = isset($_POST[$jours.'_aprem_ouverture']) ? $_POST[$jours.'_aprem_ouverture'] : '';
-                $aprem_fermeture = isset($_POST[$jours.'_aprem_fermeture']) ? $_POST[$jours.'_aprem_fermeture'] : '';
+            if (isset($_POST['horairesModifiées'])) {
 
-                if (!empty($matin_ouverture) && !empty($matin_fermeture)) {
-
-                    $horaires->horairesModif($jours, 'matin', $matin_ouverture, $matin_fermeture);
+                $horaires = new HorairesModel;
+                $joursSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+                
+                
+                foreach ($joursSemaine as $jours) {
+                    $matin_ouverture = isset($_POST[$jours.'_matin_ouverture']) ? $_POST[$jours.'_matin_ouverture'] : '';
+                    $matin_fermeture = isset($_POST[$jours.'_matin_fermeture']) ? $_POST[$jours.'_matin_fermeture'] : '';
+                    $aprem_ouverture = isset($_POST[$jours.'_aprem_ouverture']) ? $_POST[$jours.'_aprem_ouverture'] : '';
+                    $aprem_fermeture = isset($_POST[$jours.'_aprem_fermeture']) ? $_POST[$jours.'_aprem_fermeture'] : '';
+    
+                    if (!empty($matin_ouverture) && !empty($matin_fermeture)) {
+    
+                        $horaires->horairesModif($jours, 'matin', $matin_ouverture, $matin_fermeture);
+                    }
+    
+                    if (!empty($aprem_ouverture) && !empty($aprem_fermeture)) {
+    
+                        $horaires->horairesModif($jours, 'aprem', $aprem_ouverture, $aprem_fermeture);
+                    }
+    
+                    // Si toutes les plages horaires sont vides, cela signifie que l'entreprise est fermée
+    
+                    if (empty($matin_ouverture) && empty($aprem_ouverture)) {
+    
+                        $horaires->horairesModif($jours, 'matin', $matin_ouverture, $matin_fermeture, 1);
+                        $horaires->horairesModif($jours, 'aprem', $aprem_ouverture, $aprem_fermeture, 1);
+                    }
+    
                 }
 
-                if (!empty($aprem_ouverture) && !empty($aprem_fermeture)) {
-
-                    $horaires->horairesModif($jours, 'aprem', $aprem_ouverture, $aprem_fermeture);
-                }
-
-                // Si toutes les plages horaires sont vides, cela signifie que l'entreprise est fermée
-
-                if (empty($matin_ouverture) && empty($aprem_ouverture)) {
-
-                    $horaires->horairesModif($jours, 'matin', $matin_ouverture, $matin_fermeture, 1);
-                    $horaires->horairesModif($jours, 'aprem', $aprem_ouverture, $aprem_fermeture, 1);
-                }
-
+                $_SESSION['message'] = "Les horaires sont modifiés avec succès";
+                header('Location: /horaires/modifier');
+                exit;
+            } else {
+                $_SESSION['erreur'] = !empty($_POST) ? "Vous n'avez pas accès à cette page" : '';
             }
-            // $_SESSION['message'] = "Les horaires sont modifiés avec succès";
-            // exit;
         }
        
         $form = new Form;
 
         $form->debutForm()
             ->ajoutTableHorairesOuvertures()
-            ->ajoutBouton('Modifier', ['class' => 'btn btn-primary'])
+            ->ajoutBouton('Modifier', ['name' => 'horairesModifiées', 'class' => 'btn btn-primary'])
             ->finForm();
        
         $this->render('admin/horaires/modifier', ['form' => $form->create()]);
