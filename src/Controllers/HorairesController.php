@@ -42,8 +42,8 @@ class HorairesController extends Controller
     
                     if (empty($matin_ouverture) && empty($aprem_ouverture)) {
     
-                        $horaires->horairesModif($jours, 'matin', $matin_ouverture, $matin_fermeture, 1);
-                        $horaires->horairesModif($jours, 'aprem', $aprem_ouverture, $aprem_fermeture, 1);
+                        $horaires->horairesModif($jours, 'matin', $matin_ouverture, $matin_fermeture);
+                        $horaires->horairesModif($jours, 'aprem', $aprem_ouverture, $aprem_fermeture);
                     }
     
                 }

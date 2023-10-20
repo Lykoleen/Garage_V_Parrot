@@ -16,13 +16,116 @@ class HorairesModel extends Model
         $this->table = 'horaires';
     }
     
+    /**
+     * Update d'une plage horaire
+     *
+     * @param string $jour
+     * @param string $plage
+     * @param string|null $ouverture
+     * @param string|null $fermeture
+     * @param integer $ferme
+     * @return void
+     */
     public function horairesModif(string $jour, string $plage, ?string $ouverture, ?string $fermeture, int $ferme = 0)
     {
+        if (empty($ouverture) && empty($fermeture)) {
+            $ferme = 1;
+        }
+    
         return $this->querys("UPDATE " .$this->table. " SET 
         ouverture = '$ouverture', 
         fermeture = '$fermeture', 
         ferme = '$ferme'
         WHERE jour = '$jour' AND plage = '$plage';");
+    }
+
+    /**
+     * Récupère toutes les horaires d'ouverture du matin
+     *
+     * @param string $jour
+     * @return void
+     */
+    public function getHoraireOuvertureMatin(string $jour)
+    {
+        $heures = $this->querys("SELECT ouverture FROM horaires WHERE plage = 'matin' AND jour = '$jour';")->fetch();
+
+        foreach ($heures as $cle => $heure) {
+            $heures[$cle] = substr($heure, 0, -3);
+        }
+
+        $heureFormat = $heures[$cle];
+
+        if ($heureFormat == '00:00') {
+            return "<option value=''>Aucun</option>";
+        } else {
+            return "<option value='$heureFormat'>$heureFormat</option>";
+        }
+    }
+    /**
+     * Récupère toutes les horaires d'ouverture du matin
+     *
+     * @param string $jour
+     * @return void
+     */
+    public function getHoraireFermetureMatin(string $jour)
+    {
+        $heures = $this->querys("SELECT fermeture FROM horaires WHERE plage = 'matin' AND jour = '$jour';")->fetch();
+
+        foreach ($heures as $cle => $heure) {
+            $heures[$cle] = substr($heure, 0, -3);
+        }
+        
+        $heureFormat = $heures[$cle];
+
+        if ($heureFormat == '00:00') {
+            return "<option value=''>Aucun</option>";
+        } else {
+            return "<option value='$heureFormat'>$heureFormat</option>";
+        }
+    }
+    /**
+     * Récupère toutes les horaires d'ouverture du matin
+     *
+     * @param string $jour
+     * @return void
+     */
+    public function getHoraireOuvertureAprem(string $jour)
+    {
+        $heures = $this->querys("SELECT ouverture FROM horaires WHERE plage = 'aprem' AND jour = '$jour';")->fetch();
+
+        foreach ($heures as $cle => $heure) {
+            $heures[$cle] = substr($heure, 0, -3);
+        }
+        
+        $heureFormat = $heures[$cle];
+
+        if ($heureFormat == '00:00') {
+            return "<option value=''>Aucun</option>";
+        } else {
+            return "<option value='$heureFormat'>$heureFormat</option>";
+        }
+    }
+    /**
+     * Récupère toutes les horaires d'ouverture du matin
+     *
+     * @param string $jour
+     * @return void
+     */
+    public function getHoraireFermetureAprem(string $jour)
+    {
+        $heures = $this->querys("SELECT fermeture FROM horaires WHERE plage = 'aprem' AND jour = '$jour';")->fetch();
+
+        foreach ($heures as $cle => $heure) {
+            $heures[$cle] = substr($heure, 0, -3);
+        }
+        
+        $heureFormat = $heures[$cle];
+
+        if ($heureFormat == '00:00') {
+            return "<option value=''>Aucun</option>";
+        } else {
+            return "<option value='$heureFormat'>$heureFormat</option>";
+        }
     }
 
     /**
