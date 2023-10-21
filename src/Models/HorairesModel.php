@@ -53,13 +53,7 @@ class HorairesModel extends Model
             $heures[$cle] = substr($heure, 0, -3);
         }
 
-        $heureFormat = $heures[$cle];
-
-        if ($heureFormat == '00:00') {
-            return "<option value=''>Aucun</option>";
-        } else {
-            return "<option value='$heureFormat'>$heureFormat</option>";
-        }
+        return $heures[$cle];
     }
     /**
      * Récupère toutes les horaires d'ouverture du matin
@@ -75,13 +69,7 @@ class HorairesModel extends Model
             $heures[$cle] = substr($heure, 0, -3);
         }
         
-        $heureFormat = $heures[$cle];
-
-        if ($heureFormat == '00:00') {
-            return "<option value=''>Aucun</option>";
-        } else {
-            return "<option value='$heureFormat'>$heureFormat</option>";
-        }
+        return $heures[$cle];
     }
     /**
      * Récupère toutes les horaires d'ouverture du matin
@@ -97,13 +85,7 @@ class HorairesModel extends Model
             $heures[$cle] = substr($heure, 0, -3);
         }
         
-        $heureFormat = $heures[$cle];
-
-        if ($heureFormat == '00:00') {
-            return "<option value=''>Aucun</option>";
-        } else {
-            return "<option value='$heureFormat'>$heureFormat</option>";
-        }
+        return $heures[$cle];
     }
     /**
      * Récupère toutes les horaires d'ouverture du matin
@@ -119,13 +101,7 @@ class HorairesModel extends Model
             $heures[$cle] = substr($heure, 0, -3);
         }
         
-        $heureFormat = $heures[$cle];
-
-        if ($heureFormat == '00:00') {
-            return "<option value=''>Aucun</option>";
-        } else {
-            return "<option value='$heureFormat'>$heureFormat</option>";
-        }
+        return $heures[$cle];
     }
 
     /**

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/horaires.css"/>
     <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
 </head>
 
@@ -44,7 +44,7 @@
     </header>
 
     <div class="container">
-    <?php if(!empty($_SESSION['erreur'])): ?>
+        <?php if(!empty($_SESSION['erreur'])): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo $_SESSION['erreur']; unset($_SESSION['erreur']) ?>
             </div>

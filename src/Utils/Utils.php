@@ -20,4 +20,13 @@ class Utils
 
         return $options;
     }
+
+    public function genererOptionHeure($heureFormat)
+    {
+        if ($heureFormat == '00:00') {
+            return "<option value=''>Aucun</option>";
+        } else {
+            return "<option value='$heureFormat'>$heureFormat</option>";
+        }
+    }
 }

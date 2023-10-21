@@ -184,6 +184,7 @@ class Form
 
         $tranchesHoraires = new Utils;
         $getHoraires = new HorairesModel;
+        $genereOptionHeure = new Utils;
 
         
         $matinOuverture = $tranchesHoraires->tranchesHoraires();
@@ -199,38 +200,44 @@ class Form
         $this->formCode .= "</tr>";
             foreach ($joursSemaine as $jours) {
                 $getMatinOuverture = $getHoraires->getHoraireOuvertureMatin($jours);
+                $genereOptionMatinOuv = $genereOptionHeure->genererOptionHeure($getMatinOuverture);
                 $getMatinFermeture = $getHoraires->getHoraireFermetureMatin($jours);
+                $genereOptionMatinFerm = $genereOptionHeure->genererOptionHeure($getMatinFermeture);
                 $getApremOuverture = $getHoraires->getHoraireOuvertureAprem($jours);
+                $genereOptionApremOuv = $genereOptionHeure->genererOptionHeure($getApremOuverture);
                 $getApremFermeture = $getHoraires->getHoraireFermetureAprem($jours);
+                $genereOptionApremFerm = $genereOptionHeure->genererOptionHeure($getApremFermeture);
                 
                 $this->formCode .= "<tr>";
                     $this->formCode .= "<td>$jours</td>";
                     $this->formCode .= "<td>";
                         $this->formCode .= "<select name={$jours}_matin_ouverture>";
-                            $this->formCode .= $getMatinOuverture;
+                            $this->formCode .= $genereOptionMatinOuv;
                             $this->formCode .= "<option value=''>Aucun</option>";
                             $this->formCode .= $matinOuverture;
                         $this->formCode .= "</select>";
                         $this->formCode .= "<select name={$jours}_matin_fermeture>";
-                            $this->formCode .= $getMatinFermeture;
+                            $this->formCode .= $genereOptionMatinFerm;
                             $this->formCode .= "<option value=''>Aucun</option>";
                             $this->formCode .= $matinFermeture;
                         $this->formCode .= "</select>";
                     $this->formCode .= "</td>";
                     $this->formCode .= "<td>";
                         $this->formCode .= "<select name={$jours}_aprem_ouverture>";
-                            $this->formCode .= $getApremOuverture;
+                            $this->formCode .= $genereOptionApremOuv;
                             $this->formCode .= "<option value=''>Aucun</option>";
                             $this->formCode .= $apremOuverture;
                         $this->formCode .= "</select>";
                         $this->formCode .= "<select name={$jours}_aprem_fermeture>";
-                            $this->formCode .= $getApremFermeture;
+                            $this->formCode .= $genereOptionApremFerm;
                             $this->formCode .= "<option value=''>Aucun</option>";
                             $this->formCode .= $apremFermeture;
                         $this->formCode .= "</select>";
                     $this->formCode .= "</td>";
                 $this->formCode .= "</tr>";
             }
+
+         $this->formCode .= "</table>";
 
         return $this;
     }
