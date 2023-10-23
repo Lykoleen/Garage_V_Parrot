@@ -237,7 +237,7 @@ class Form
                 $this->formCode .= "</tr>";
             }
 
-         $this->formCode .= "</table>";
+        $this->formCode .= "</table>";
 
         return $this;
     }
