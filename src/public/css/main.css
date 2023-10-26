@@ -1,0 +1,42 @@
+.container, body {
+    padding: 0;
+    margin: 0;
+    border: 1px red solid;
+}
+
+.section_presentation {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+}
+
+.container_presentation {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    z-index: 3;
+}
+
+.mercedes {
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.opacity {
+    width: 100%;
+    height: 100%;
+    background-color: #374158;
+    opacity: 0.64;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}

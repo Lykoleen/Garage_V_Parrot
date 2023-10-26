@@ -14,10 +14,9 @@
     </thead>
     <tbody>
         <?php 
-            $count = -1;
+            $count = 0;
         ?>
         <?php foreach($annonces as $annonce): ?>
-            <?php $count++ ?>
             <?php $image = $images[$count]; ?>
             <tr>
                 <td><?= $annonce['title'] ?></td>
@@ -27,11 +26,12 @@
                 <td><?= $annonce['energy'] ?></td>
                 <td>
                     <img width="200" src="/upload/<?= $image ?>" alt="image de voiture">
-                 </td>
+                </td>
                 <td>
                     <a href="/annonces/modifier/<?= $annonce['id'] ?>" class="btn btn-warning">Modifier</a><a href="/annonces/supprimeAnnonce/<?= $annonce['id'] ?>" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette annonce définitivement ?')">Supprimer</a>
                 </td>
             </tr>
+            <?php $count++ ?>
         <?php endforeach; ?>
     </tbody>
 </table>
