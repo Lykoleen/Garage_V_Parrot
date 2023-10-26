@@ -60,7 +60,7 @@ class HorairesController extends Controller
 
         $form->debutForm()
             ->ajoutTableHorairesOuvertures()
-            ->ajoutBouton('Modifier', ['name' => 'horairesModifiées', 'class' => 'btn btn-primary'])
+            ->ajoutBouton('Modifier', ['name' => 'horairesModifiées', 'class' => 'btn btn-primary my-3'])
             ->finForm();
        
         $this->render('admin/horaires/modifier', ['form' => $form->create()]);

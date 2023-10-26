@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AnnoncesModel;
 use App\Core\Form;
+use App\Models\ImagesVoitureModel;
 
 class AnnoncesController extends Controller
 {
@@ -39,9 +40,12 @@ class AnnoncesController extends Controller
         // On vérifie si l'utilisateur est connecté
         if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) {
             // L'utilisateur est connecté
-            // On vérifie si le formulaire est complet
-            if (Form::validate($_POST, ['title', 'years', 'price', 'mileage','description', 'energy'])) {
+            // On vérifie si le formulaire est complet, qu'au moins une image est envoyée.
+            if (Form::validate($_POST, ['title', 'years', 'price', 'mileage','description', 'energy'])  
+                && isset($_FILES["image"])) {
                 // Le formulaire est complet
+
+
                 // On se protège contre les failles xss
                 // strip_tags, htmlentities, htmlspecialchars
                 $title = strip_tags($_POST['title']);
@@ -50,6 +54,7 @@ class AnnoncesController extends Controller
                 $mileage = strip_tags($_POST['mileage']);
                 $description = strip_tags(nl2br($_POST['description']));
                 $energy = strip_tags($_POST['energy']);
+               
 
                 // ON instancie notre modèle
                 $annonce = new AnnoncesModel;
@@ -64,10 +69,74 @@ class AnnoncesController extends Controller
 
                 // On enregistre
                 $annonce->create();
+                
+                
+                // On procède aux vérifications de l'envoie des images
+                // On vérifie toujours l'extension et le type mime
+                $allowed = [
+                    "jpg" => "image/jpeg",
+                    "jpeg" => "image/jpeg",
+                    "png" => "image/png",
+                    "svg" => "image/svg+xml",
+                    "tif" => "image/tiff",
+                    "tiff" => "image/tiff"
+                ];
+                
+                $filenames = $_FILES["image"]["name"];
+                $filetypes = $_FILES["image"]["type"];
+                $filetmps = $_FILES["image"]["tmp_name"];
+                $fileerrors = $_FILES["image"]["error"];
+                
+                function validateAndUploadFiles($filenames, $filetypes, $filetmps, $fileerrors, $allowed) {
+                    $counter = 1;
+                    $uploaded_files = [];
+                
+                    foreach ($filenames as $key => $filename) {
+                        $path_info = pathinfo($filename);
+                        $extension = strtolower($path_info['extension']);
+                        $filetype = $filetypes[$key];
+                        $fileerror = $fileerrors[$key];
+                
+                        if ($fileerror !== 0 || !array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)) {
+                            // L'erreur s'est produite lors du téléchargement ou l'extension ou le type de fichier n'est pas autorisé
+                            die("Erreur : Téléchargement, extension ou type de fichier incorrect");
+                        }
+                
+                        $newname = md5(uniqid()) . "_" . $counter; // Utilisez un nom unique pour chaque fichier
+                        $newfilename = "../public/upload/$newname.$extension";
+                
+                        if (!move_uploaded_file($filetmps[$key], $newfilename)) {
+                            die("L'upload a échoué");
+                        }
+                        
+                        $imageModel = new ImagesVoitureModel;
+                        $annonce = new AnnoncesModel;
+                        // On récupère l'id de l'annonce envoyée + le nom de l'image avec son extension
+                        $nomImageAvecExtension = $newname . '.' . $extension;
+                        $ArrayId = $annonce->getLastId();
+                        $annonceId = (int)$ArrayId['annonce_id'];
+                        // On hydrate
+                        $imageModel->setName($nomImageAvecExtension);
+                        $imageModel->setAnnonces_id($annonceId);
+                        
+                        // On enregistre
+                        $imageModel->create();
 
+                
+                        chmod($newfilename, 0644); // On interdit l'exécution du fichier
+                        $uploaded_files[] = $newfilename;
+                        $counter++;
+                    }
+                
+                    return $uploaded_files;
+                }
+                
+                validateAndUploadFiles($filenames, $filetypes, $filetmps, $fileerrors, $allowed);
+
+                
                 // On redirige
                 $_SESSION['message'] = "Votre annonce a été enregistrée avec succès";
-                header('Location: /');
+                header('Location: /employes/annonces');
                 exit;
             } else {
                 // Le formulaire n'est pas complet
@@ -82,9 +151,8 @@ class AnnoncesController extends Controller
 
 
             $form = new Form;
-            $formPourImages = new Form;
 
-            $form->debutForm() // Params ne servent que pour l'insertion d'images
+            $form->debutForm('post', '#', ['enctype' => 'multipart/form-data']) // Params ne servent que pour l'insertion d'images
                 ->ajoutLabelFor('title', 'Titre de l\'annonce :')
                 ->ajoutInput(
                     'text',
@@ -112,16 +180,17 @@ class AnnoncesController extends Controller
                 )
                 ->ajoutLabelFor('description', 'Texte de l\'annonce', ['class' => 'mt-2'])
                 ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '15', 'col' => '20', 'class' => 'form-control my-2', 'max-length' => '4000'])
-                
+                ->ajoutLabelFor('image', 'Images :')
+                ->ajoutInput(
+                    'file',
+                    'image[]',
+                    ['id' => 'image', 'class' => 'form-control'],
+                    'multiple'
+                )
                 ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary mt-2', 'name' => 'Ajouter'])
                 ->finForm();
-            
-                // Formulaire d'ajout des images
-            $formPourImages->debutForm('post', '/upload/upload', ['class' => 'dropzone','enctype' => 'multipart/form-data'])
-                
-                ->finForm();
                
-            $this->render('annonces/ajouter', ['form' => $form->create(), 'formPourImages' => $formPourImages->create()]);
+            $this->render('annonces/ajouter', ['form' => $form->create()]);
         } else {
             // L'utilisateur n'est pas connecté
             $_SESSION['erreur'] = "Vous devez être connecté(e) pour pouvoir accéder à cette page";
@@ -249,12 +318,27 @@ class AnnoncesController extends Controller
      */
     public function supprimeAnnonce(int $id)
     {
+        $annonce = new AnnoncesModel;
+
+        $dossier = '../public/upload/';
+        $arrayImages = $annonce->getNamesImages($id);
+        
+        foreach ($arrayImages as $array) {
+            foreach ($array as $cle => $valeur) {
+                $cheminImage = $dossier . $valeur;
+  
+                if (file_exists($cheminImage)) {
+                    unlink($cheminImage);
+                }
+            }
+        }
+        
         if (isset($_SESSION['user']) && !empty($_SESSION['user']['id']))
         {
-            $annonce = new AnnoncesModel;
-            $annonce->delete($id);
+            $annonce->deleteImagesEtAnnonce($id);
             header('Location: '.$_SERVER['HTTP_REFERER']);   
         }
+
     }
 
 }

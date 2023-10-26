@@ -24,8 +24,15 @@ class EmployesController extends Controller
             $annoncesModel = new AnnoncesModel;
 
             $annonces = $annoncesModel->findAll();
-
-            $this->render('employes/annonces', compact('annonces'));
+        
+            $images = [];
+            foreach ($annonces as $annonce) {
+                $annoncesImages = $annoncesModel->getImage($annonce['id']);
+                foreach ($annoncesImages as $cle => $valeur) {
+                    $images[] = $valeur;
+                }
+            }
+            $this->render('employes/annonces', compact('annonces', 'images'));
         }
     }
 

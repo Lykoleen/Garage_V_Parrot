@@ -15,14 +15,46 @@ class AnnoncesModel extends Model
     public function __construct()
     {
         $this->table = 'annonces';
-
     }
 
+    public function getImage($id)
+    {
+        return $this->querys("SELECT name FROM images_voiture WHERE annonces_id = :id", [':id' => $id])->fetch();
+    }
 
+    /**
+     * Récupère l'id de la dernière annonce envoyée
+     *
+     * @return void
+     */
+    public function getLastId()
+    {
+        return $this->querys("SELECT MAX(id) as annonce_id FROM annonces")->fetch();
+    }
+
+    /**
+     * Supprime les images associées à l'annonce et l'annonce
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function deleteImagesEtAnnonce(int $id)
+    {
+        // On supprime d'abord les images associées à l'annonce
+        $this->querys('DELETE FROM images_voiture WHERE annonces_id = :id', [':id' => $id]);
+
+        // Ensuite, on supprime l'annonce elle-même
+        return $this->querys('DELETE FROM annonces WHERE id = :id', [':id' => $id]);
+    }
+
+    public function getNamesImages($id)
+    {
+        return $this->querys("SELECT name FROM images_voiture WHERE annonces_id = :id", [':id' => $id])->fetchAll();
+    }
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId(): int
     {
         return $this->id;
@@ -32,7 +64,7 @@ class AnnoncesModel extends Model
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id): self
     {
         $this->id = $id;
@@ -42,8 +74,8 @@ class AnnoncesModel extends Model
 
     /**
      * Get the value of title
-     */ 
-    public function gettitle(): string
+     */
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -52,8 +84,8 @@ class AnnoncesModel extends Model
      * Set the value of title
      *
      * @return  self
-     */ 
-    public function settitle($title): self
+     */
+    public function setTitle($title): self
     {
         $this->title = $title;
 
@@ -85,7 +117,7 @@ class AnnoncesModel extends Model
 
     /**
      * Get the value of price
-     */ 
+     */
     public function getPrice(): float
     {
         return $this->price;
@@ -95,7 +127,7 @@ class AnnoncesModel extends Model
      * Set the value of price
      *
      * @return  self
-     */ 
+     */
     public function setPrice($price): self
     {
         $this->price = $price;
@@ -105,7 +137,7 @@ class AnnoncesModel extends Model
 
     /**
      * Get the value of mileage
-     */ 
+     */
     public function getMileage(): int
     {
         return $this->mileage;
@@ -115,7 +147,7 @@ class AnnoncesModel extends Model
      * Set the value of mileage
      *
      * @return  self
-     */ 
+     */
     public function setMileage($mileage): self
     {
         $this->mileage = $mileage;
@@ -125,7 +157,7 @@ class AnnoncesModel extends Model
 
     /**
      * Get the value of description
-     */ 
+     */
     public function getDescription(): string
     {
         return $this->description;
@@ -135,7 +167,7 @@ class AnnoncesModel extends Model
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description): self
     {
         $this->description = $description;
@@ -145,7 +177,7 @@ class AnnoncesModel extends Model
 
     /**
      * Get the value of energy
-     */ 
+     */
     public function getEnergy(): string
     {
         return $this->energy;
@@ -155,7 +187,7 @@ class AnnoncesModel extends Model
      * Set the value of energy
      *
      * @return  self
-     */ 
+     */
     public function setEnergy($energy): self
     {
         $this->energy = $energy;

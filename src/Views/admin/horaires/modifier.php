@@ -12,10 +12,10 @@
 
 <div class="journee_sans_pause">
     <p>Pour une ouverture sans pause le midi. Veuillez sélectionner <strong>seulement</strong> les horaires du matin pour définir le créneau.</p>
-    <img class="img_horaires" src="/assets/img/journee_sans_pause.jpg" >
+    <img class="img_horaires_2" src="/assets/img/journee_sans_pause.jpg" >
 </div>
 <div class="ferme my-3">
     <p>Pour statuer l'entreprise fermée pour la journée, sélectionnez les 4 horaires sur "Aucun"</p>
-    <img class="img_horaires" src="/assets/img/fermee.jpg" >
+    <img class="img_horaires_3" src="/assets/img/fermee.jpg" >
 
 </div>

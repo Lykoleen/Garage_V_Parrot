@@ -7,3 +7,7 @@ RewriteEngine On
 
 # On réécrit l'URL
 RewriteRule ^([a-zA-Z0-9\-\_\/]*)$ index.php?p=$1
+
+# Empêche l'accès direct aux fichiers d'image (jpg, jpeg, png, svg, tif, tiff)
+RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|svg|tif|tiff)$
+RewriteRule ^upload/ - [F]
