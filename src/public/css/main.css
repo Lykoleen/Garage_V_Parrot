@@ -1,24 +1,48 @@
 .container, body {
     padding: 0;
     margin: 0;
-    border: 1px red solid;
+   
 }
+
+/* Section présentation du garage */
 
 .section_presentation {
     width: 100vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
     color: white;
 }
 
 .container_presentation {
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    margin-left: 10%;
     width: 300px;
     height: 400px;
     z-index: 3;
+}
+
+.content_presentation h1{
+    line-height: 30px;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    text-align: justify;
+}
+
+.content_presentation p {
+    color: #D76C58;
+    line-height: 20px;
+    text-align: justify;
+    font-weight: bold;
+    text-shadow: #000000 1px 1px 1px;
+}
+
+.btn_presentation {
+    position: absolute;
+    transform: translate(25%, -50%);
+    bottom: 10px;
 }
 
 .mercedes {
@@ -28,9 +52,10 @@
     position: absolute;
     top: 0;
     left: 0;
+    filter: blur(1px);
 }
 
-.opacity {
+.overlay {
     width: 100%;
     height: 100%;
     background-color: #374158;

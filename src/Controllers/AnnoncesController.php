@@ -79,7 +79,8 @@ class AnnoncesController extends Controller
                     "png" => "image/png",
                     "svg" => "image/svg+xml",
                     "tif" => "image/tiff",
-                    "tiff" => "image/tiff"
+                    "tiff" => "image/tiff",
+                    "webp" => "image/webp"
                 ];
                 
                 $filenames = $_FILES["image"]["name"];
@@ -122,7 +123,7 @@ class AnnoncesController extends Controller
                         // On enregistre
                         $imageModel->create();
 
-                
+                        
                         chmod($newfilename, 0644); // On interdit l'exécution du fichier
                         $uploaded_files[] = $newfilename;
                         $counter++;

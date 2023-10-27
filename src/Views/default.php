@@ -16,7 +16,7 @@
         <!-- Ici sera la nav bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img width="200" src="../assets/img/logo.svg" alt="logo du garage automobile de monsieur parrot vincent"></a>
+                <a class="navbar-brand" href="/"><img width="150" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/logo.svg" alt="logo du garage automobile de monsieur parrot vincent"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
