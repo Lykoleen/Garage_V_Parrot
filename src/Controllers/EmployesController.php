@@ -32,6 +32,7 @@ class EmployesController extends Controller
                     $images[] = $valeur;
                 }
             }
+           
             $this->render('employes/annonces', compact('annonces', 'images'));
         }
     }

@@ -14,22 +14,47 @@
     <div class="overlay"></div>
 </section>
 <section class="section_services">
-    <h1>NOS SERVICES</h1>
+    <h2>NOS SERVICES</h2>
     <div class="presentation_services">
         <div class="card_services">
             <img class="image_services" src="../assets/img/atelier.jpg" alt="photo de réparation d'un phare">
-            <h2>L'atelier</h2>
+            <h3>L'atelier</h3>
             <p>Notre atelier est l'endroit idéal pour prendre soin de votre véhicule. Que vous ayez besoin d'un entretien régulier ou de réparations mécaniques sur votre voiture, notre équipe de professionnels qualifiés est là pour répondre à tous vos besoins.</p>
         </div>
         <div class="card_services">
             <img class="image_services" src="../assets/img/tuto.jpg" alt="photo de deux personnes dans une voiture">
-            <h2>Nos conseils et tutos</h2>
+            <h3>Nos conseils et tutos</h3>
             <p>Nos experts dévoués sont là pour répondre à toutes vos questions, qu'il s'agisse d'entretien de routine, de dépannage en cas de panne, ou même de projets de personnalisation de votre voiture.</p>
         </div>
         <div class="card_services">
             <img class="image_services" src="../assets/img/location.jpg" alt="photo d'un chien qui passe sa tête par la fenêtre de la voiture">
-            <h2>La location de véhicules</h2>
+            <h3>La location de véhicules</h3>
             <p>Que vous ayez besoin d'un véhicule pour un voyage d'affaires, des vacances en famille ou tout simplement pour explorer de nouveaux horizons, nous avons la solution idéale pour vous.</p>
         </div>
+    </div>
+</section>
+<section class="section_occasions">
+    <h2>NOS VÉHICULES D'OCCASION</h2>
+    <?php 
+        $count = 0;
+    ?>
+    <?php foreach ($troisDernieres as $annonce): ?>
+        <?php $image = $images[$count]; ?>
+        <div class="presentation_occasions">
+            <div class="card_occasions">
+                <img src="/upload/<?= $image ?>" alt="photo de <?= $annonce['title'] ?>">
+                <div class="text_card">
+                    <h3><?= $annonce['title'] ?>   |</h3> 
+                    <p><?= $annonce['price'] ?> €  |</p>  
+                    <p><?= $annonce['years'] ?>  |</p>  
+                    <p><?= $annonce['mileage'] ?> kms</p>
+                </div>
+                <a href="/annonces/lire/<?= $annonce['id'] ?>"><button class="btn btn_annonce">Voir</button></a>
+            </div>
+        </div>
+        <?php $count++ ?>
+    <?php endforeach; ?>
+    <div class="btn_voir_all_annonces">
+        <a href="/annonces/index" class="all_annonces"><button class="btn btn-light">Toutes les annonces</button></a>
     </div>
 </section>

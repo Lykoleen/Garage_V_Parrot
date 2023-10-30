@@ -17,9 +17,25 @@ class AnnoncesModel extends Model
         $this->table = 'annonces';
     }
 
+    /**
+     * Récupère la première image associé à l'annonce
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function getImage($id)
     {
         return $this->querys("SELECT name FROM images_voiture WHERE annonces_id = :id", [':id' => $id])->fetch();
+    }
+
+    /**
+     * Récupère les trois dernières annonces
+     *
+     * @return void
+     */
+    public function getAnnoncesDec()
+    {
+        return $this->querys("SELECT * FROM annonces ORDER BY id DESC LIMIT 3")->fetchAll();
     }
 
     /**
