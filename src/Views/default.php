@@ -21,28 +21,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                    <ul class="liste_liens navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
+                        <li class="nav-item me-3 me-lg-4">
+                            <a class="link" aria-current="page" href="/">Accueil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/annonces">Nos Services</a>
+                        <li class="nav-item me-3 me-lg-4">
+                            <a class="link" href="/annonces">Nos Services</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/annonces">Nos Occasions</a>
+                        <li class="nav-item me-3 me-lg-4">
+                            <a class="link" href="/annonces">Les Occasions</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/annonces">Avis Clients</a>
+                        <li class="nav-item me-3 me-lg-4">
+                            <a class="link" href="/annonces">Déposer un avis</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/annonces">Contactez-nous</a>
+                        <li class="nav-item me-4 me-lg-5">
+                            <a class="link" href="/annonces">Contact</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="liste_liens navbar-nav me-auto mb-2 mb-lg-0">
                         <?php 
                         if(empty($_SESSION['user']['id'])): ?>
-                        <li class="nav-item">
-                            <a class="nav-link ms-lg-5" href="/employes/login">Connexion</a>
+                        <li class="nav-item me-3 me-lg-4">
+                            <a class="ms-lg-5" href="/employes/login"><img width="25" src="../assets/img/iconeconnexion.png" alt="formulaire de connexion"></a>
                         </li>
                         <?php endif; ?>
                         <?php 

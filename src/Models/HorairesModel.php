@@ -47,7 +47,7 @@ class HorairesModel extends Model
      */
     public function getHoraireOuvertureMatin(string $jour)
     {
-        $heures = $this->querys("SELECT ouverture FROM horaires WHERE plage = 'matin' AND jour = '$jour';")->fetch();
+        $heures = $this->querys("SELECT ouverture FROM $this->table WHERE plage = 'matin' AND jour = '$jour';")->fetch();
 
         foreach ($heures as $cle => $heure) {
             $heures[$cle] = substr($heure, 0, -3);
@@ -63,7 +63,7 @@ class HorairesModel extends Model
      */
     public function getHoraireFermetureMatin(string $jour)
     {
-        $heures = $this->querys("SELECT fermeture FROM horaires WHERE plage = 'matin' AND jour = '$jour';")->fetch();
+        $heures = $this->querys("SELECT fermeture FROM $this->table WHERE plage = 'matin' AND jour = '$jour';")->fetch();
 
         foreach ($heures as $cle => $heure) {
             $heures[$cle] = substr($heure, 0, -3);
@@ -79,7 +79,7 @@ class HorairesModel extends Model
      */
     public function getHoraireOuvertureAprem(string $jour)
     {
-        $heures = $this->querys("SELECT ouverture FROM horaires WHERE plage = 'aprem' AND jour = '$jour';")->fetch();
+        $heures = $this->querys("SELECT ouverture FROM $this->table WHERE plage = 'aprem' AND jour = '$jour';")->fetch();
 
         foreach ($heures as $cle => $heure) {
             $heures[$cle] = substr($heure, 0, -3);
@@ -95,7 +95,7 @@ class HorairesModel extends Model
      */
     public function getHoraireFermetureAprem(string $jour)
     {
-        $heures = $this->querys("SELECT fermeture FROM horaires WHERE plage = 'aprem' AND jour = '$jour';")->fetch();
+        $heures = $this->querys("SELECT fermeture FROM $this->table WHERE plage = 'aprem' AND jour = '$jour';")->fetch();
 
         foreach ($heures as $cle => $heure) {
             $heures[$cle] = substr($heure, 0, -3);
