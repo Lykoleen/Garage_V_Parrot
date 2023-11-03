@@ -275,6 +275,33 @@ class Form
         return $this;
 
     }
+
+    /**
+     * Créer le bloc de notation avec des étoiles, le nombre d'étoiles est modulable
+     *
+     * @param [type] $nbSpan
+     * @param string $class
+     * @param array $attributs
+     * @return self
+     */
+    public function ajoutRating($nbSpan, string $class, array $attributs = []): self
+    {
+        // On ouvre la div avec ses attributs
+        $this->formCode .= "<div class=\"";
+        $this->formCode .= $class;
+        $this->formCode .= "\">";
+
+        // On créer une boucle qui génère le nombre de span souhaité et un data-rating incrémenté
+        for ($i = 1; $i <= $nbSpan; $i++) {
+            $this->formCode .= "<span ";
+            $this->formCode .= $this->ajoutAttributs($attributs).' ';
+            $this->formCode .= "data-rating=\"$i\">";
+            $this->formCode .= "</span>";
+        }
+
+        $this->formCode .= "</div>";
+        return $this;
+    }
 }   
 
 ?>

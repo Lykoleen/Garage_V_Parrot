@@ -9,12 +9,22 @@
 
 /* Largest devices such as desktops (1280px and up) */
 /* @media only screen and (min-width: 80em) {...} */
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto/Roboto-Regular.ttf") format('ttf');
+}
+
+@font-face {
+    font-family: "DM Sans";
+    src: url("../fonts/Dm-sans/DMSans-Light.ttf") format('ttf');
+}
 
 /* Règles générales */
 .container, body {
     padding: 0;
     margin: 0;
     max-width: 100%;
+    font-family: "DM Sans" , Arial, Times, serif;
 }
 
 p {
@@ -30,66 +40,118 @@ h2 {
 }
 
 h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 88%;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
     margin: 10px 0;
+}
+
+/* Nav bar */
+.liste_liens li {
+    padding-bottom: 10px;
+}
+
+.link {
+    position: relative;
+    color: #000000;
+    text-decoration: none;
+}
+
+.link::after {
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #7F5056;
+    height: 1px;
+    transition: all .5s;
+}
+
+.link:hover {
+    color: #D76C58;
+}
+
+.link:hover::after {
+    width: 100%;
 }
 
 /* Section présentation du garage et occasion */
 
 .section_presentation{
     width: 100%;
-    display: flex;
     position: relative;
+    display: flex;
     color: white;
+    overflow: hidden;
 }
 
 .container_presentation {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 10%;
-    width: 300px;
-    height: 400px;
+    width: 100%;
+    height: 88vh;
     z-index: 3;
 }
 
+.content_presentation {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
 .content_presentation h1{
-    line-height: 30px;
+    font-family: 'Roboto', Arial, Times, serif;
+    line-height: 120%;
     color: #D76C58;
     margin-bottom: 20px;
     font-weight: bold;
     font-size: 1.5rem;
     letter-spacing: 1px;
-}
-
-.content_presentation p {
-    color: white;
-    line-height: 20px;
-    font-size: 1.1rem;
-    font-weight: 500;
     text-shadow: #000000 1px 1px 1px;
 }
 
+.content_presentation p {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Roboto', Arial, Times, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    opacity: 0.8;
+    text-shadow: #000000 1px 1px 1px;
+}
+
+.container_presentation a {
+    text-align: center;
+    margin-bottom: 35%;
+}
+
 .btn_presentation{
-    position: absolute;
-    transform: translate(29%, -50%);
-    bottom: 10px;
-    border-radius: 7px;
-    background-color: #D76C58;
-    box-shadow: #b8422d 1px 1px 5px inset;
-    box-shadow: #b8422d -1px -1px 5px inset;
+    height: 40px;
+    align-items: center;
+    border-radius: 6px;
+    border: #D76C58 2px solid;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .mercedes {
-    width: 100%;
+    width: 350%;
     height: 100%;
     z-index: -10;
     position: absolute;
-    top: 0;
-    left: 0;
-    filter: blur(1px);
+    top: -30px;
+    left: -110%;
+    filter: blur(2px);
+    transform: scale(1.1);
 }
 
 .overlay {
@@ -126,8 +188,14 @@ h3 {
     margin-bottom: 20px;
 }
 
+.card_services h3 {
+    color: #486284;
+    font-size: 20px;
+}
+
 .card_services p {
     color: #8CA2C0;
+    font-size: 15px;
     padding: 0 20px;
 }
 
@@ -138,7 +206,7 @@ h3 {
 }
 
 .section_occasions a{
-    margin: 10px auto;
+    margin: 30px auto;
 }
 
 .btn_voir_all_annonces {
@@ -147,22 +215,28 @@ h3 {
 
 .btn_annonce {
     margin: auto;
-    background-color: #667080;
+    background-color: #D76C58;
     color: white;
     border-radius: 24px;
+    width: 80px;
 }
 
 .all_annonces button {
     border-radius: 6px;
-    background-color: #D76C58;
-    box-shadow: #b8422d 1px 1px 5px inset;
-    box-shadow: #b8422d -1px -1px 5px inset;
+    border: #D76C58 2px solid;
+    font-weight: 600;
+    width: 230px;
 }
 
 .text_card {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.p_card {
+    display: flex;
 }
 
 .text_card p {

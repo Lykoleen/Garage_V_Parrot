@@ -4,8 +4,8 @@
     <img class="mercedes" src="../assets/img/mercedes.jpg" alt="background de mercedes">
     <div class="container_presentation">
         <div class="content_presentation">
-            <h1>GARAGE AUTOMOBILE <br> VINCENT PARROT</h1>
-            <p>Que vous recherchiez des services d'entretien, de réparation ou que souhaitiez acheter l'un de nos véhicules d'occasion entretenus par nos soins, notre équipe est là pour répondre à tous vos besoins avec expertise et dévouement.</p>
+            <h1>BIENVENUE CHEZ NOTRE GARAGE AUTOMOBILE VINCENT PARROT</h1>
+            <p>Que vous recherchiez des services d'entretien, de réparation, ou que vous souhaitiez acheter une voiture d’occasion, vous êtes au bon endroit !</p>
         </div>
         <a href="/annonces/index">
             <button class="w-50 btn btn-light btn_presentation">Voir les annonces</button>
@@ -44,10 +44,12 @@
             <div class="card_occasions">
                 <img src="/upload/<?= $image ?>" alt="photo de <?= $annonce['title'] ?>">
                 <div class="text_card">
-                    <h3><?= $annonce['title'] ?>   |</h3> 
+                    <h3><?= $annonce['title'] ?></h3>
+                    <div class="p_card">
                     <p><?= $annonce['price'] ?> €  |</p>  
                     <p><?= $annonce['years'] ?>  |</p>  
                     <p><?= $annonce['mileage'] ?> kms</p>
+                    </div> 
                 </div>
                 <a href="/annonces/lire/<?= $annonce['id'] ?>"><button class="btn btn_annonce">Voir</button></a>
             </div>
@@ -58,3 +60,32 @@
         <a href="/annonces/index" class="all_annonces"><button class="btn btn-light">Toutes les annonces</button></a>
     </div>
 </section>
+<section class="section_avis">
+    <div class="container_avis_publies">
+        <h2>LES AVIS DE NOS CLIENTS</h2>
+        <div class="avis_client">
+            <p>A Continuer</p>
+        </div>
+    </div>
+
+    <div class="container_depot_avis">
+        <?php if(!empty($_SESSION['erreur'])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $_SESSION['erreur']; unset($_SESSION['erreur']) ?>
+            </div>
+        <?php endif; ?>
+        <?php if(!empty($_SESSION['message'])): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $_SESSION['message']; unset($_SESSION['message']); ?>
+            </div>
+        <?php endif; ?>
+
+        <h3>Déposez votre avis !</h3>
+        <?php echo $form ?>
+        
+    </div>
+    
+
+
+</section>
+
