@@ -1,0 +1,135 @@
+.container_infos_footer {
+    background-color: black;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.container_infos_footer p, .container_infos_footer a, .container_mentions a {
+    font-size: 0.8rem;
+}
+
+/* Logo et réseaux */
+
+.logo_et_reseaux {
+    margin: auto;
+    margin-top: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo_blanc {
+    margin: auto;
+}
+
+.reseaux {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.reseaux img {
+    width: 60px;
+}
+
+/* Horaires */
+
+.horaires {
+    width: 70%;
+    max-width: 350px;
+    margin: auto;
+}
+
+.horaires h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+/* Informations du garage */
+
+.infos_garage {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.infos_garage p {
+    text-align: center;
+    
+}
+
+.p_groupe1, .p_groupe2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+
+}
+
+.p_groupe1 p:first-child::after{
+    content: "|";
+    margin: 0 4px;
+}
+
+.p_groupe2 p:first-child {
+    margin-right: 5px;
+}
+
+.infos_garage h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Accès rapide */
+.acces_rapide {
+    width: 80%;
+    max-width: 350px;
+    margin: 20px auto;
+}
+
+.acces_rapide h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.link_acces_rapide {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link_acces_rapide a {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.link_accueil_et_services, 
+.link_occasions_et_avis,
+.link_contact_et_connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+/* Mentions légales ect */
+
+.container_mentions {
+    background-color: black;
+}
+
+.link_mentions {
+    width: 70%;
+    height: 120px;
+    margin: auto;
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.link_mentions a {
+    text-decoration: none;
+    color: white;
+}

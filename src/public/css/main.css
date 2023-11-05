@@ -27,6 +27,10 @@
     font-family: "DM Sans" , Arial, Times, serif;
 }
 
+h1, h2, h3 {
+    font-family: 'Roboto', Arial, Times, serif;
+}
+
 p {
     text-align: justify;
     line-height: 20px;
@@ -47,39 +51,6 @@ h3 {
     margin: 10px 0;
 }
 
-/* Nav bar */
-.liste_liens li {
-    padding-bottom: 10px;
-}
-
-.link {
-    position: relative;
-    color: #000000;
-    text-decoration: none;
-}
-
-.link::after {
-    position: absolute;
-    top: 20px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 0%;
-    content: '.';
-    color: transparent;
-    background: #7F5056;
-    height: 1px;
-    transition: all .5s;
-}
-
-.link:hover {
-    color: #D76C58;
-}
-
-.link:hover::after {
-    width: 100%;
-}
 
 /* Section présentation du garage et occasion */
 
@@ -107,12 +78,11 @@ h3 {
 }
 
 .content_presentation h1{
-    font-family: 'Roboto', Arial, Times, serif;
     line-height: 120%;
     color: #D76C58;
     margin-bottom: 20px;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     letter-spacing: 1px;
     text-shadow: #000000 1px 1px 1px;
 }
@@ -120,7 +90,6 @@ h3 {
 .content_presentation p {
     color: #FFF;
     text-align: center;
-    font-family: 'Roboto', Arial, Times, serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -135,6 +104,7 @@ h3 {
 }
 
 .btn_presentation{
+    width: 200px;
     height: 40px;
     align-items: center;
     border-radius: 6px;
@@ -144,12 +114,12 @@ h3 {
 }
 
 .mercedes {
-    width: 350%;
-    height: 100%;
+    width: 1200px;
+    height: 800px;
     z-index: -10;
     position: absolute;
     top: -30px;
-    left: -110%;
+    left: -300px;
     filter: blur(2px);
     transform: scale(1.1);
 }
@@ -260,6 +230,7 @@ h3 {
     font-size: 13px;
     margin: 20px auto;
     height: 150px;
+    text-align: center;
 }
 
 /* Section pour déposer un avis */
@@ -267,6 +238,7 @@ h3 {
 .container_depot_avis {
     width: 70%;
     margin: 40px auto;
+    border-top: #7F5056 2px solid;
 }
 
 .container_depot_avis h3 {
@@ -335,4 +307,8 @@ h3 {
     border-radius: 24px;
     width: 120px;
     font-weight: bold;
+}
+
+.container_depot_avis form label {
+    color: #667080;
 }

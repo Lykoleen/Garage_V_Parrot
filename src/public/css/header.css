@@ -1,0 +1,33 @@
+/* Nav bar */
+.liste_liens li {
+    padding-bottom: 10px;
+}
+
+.link {
+    position: relative;
+    color: #000000;
+    text-decoration: none;
+}
+
+.link::after {
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #7F5056;
+    height: 1px;
+    transition: all .5s;
+}
+
+.link:hover {
+    color: #D76C58;
+}
+
+.link:hover::after {
+    width: 100%;
+}

@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="/css/init.css"/>
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/horaires.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
     <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
 </head>
 
@@ -73,6 +75,59 @@
         <?php endif; ?>
         <?= $contenu ?>
     </main>
+
+    <footer>
+        <div class="container_infos_footer">
+            <div class="logo_et_reseaux">
+                <img width="150" class="logo_blanc" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/logo_blanc.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                <div class="reseaux">
+                    <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/facebook.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                    <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/twitter.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                    <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/instagram.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                </div>
+            </div>
+            <div class="horaires">
+                <h3>Horaires</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi ea voluptatem tempora quis, odio repellat illum a nobis possimus, perspiciatis fugiat nihil repudiandae perferendis</p>
+            </div>
+            <div class="infos_garage">
+                <h3>Informations</h3>
+                <p>Vincent Parrot</p>
+                <div class="p_groupe1">
+                    <p>Tél. 01 02 03 04 05</p> 
+                    <p>garagevparrot@email.com</p> 
+                </div>
+                <div class="p_groupe2">
+                    <p>45 avenue Général Foch</p>
+                    <p>31000 Toulouse</p>
+                </div>
+            </div>
+            <div class="acces_rapide">
+                <h3>Accès Rapide</h3>
+                <div class="link_acces_rapide">
+                    <div class="link_accueil_et_services">
+                        <a class="link" href="/">Accueil</a>
+                        <a class="link" href="#services">Nos services</a>
+                    </div>
+                    <div class="link_occasions_et_avis">
+                        <a class="link" href="/annonces">Les occasions</a>
+                        <a class="link" href="#depot_avis">Déposer un avis</a>
+                    </div>
+                    <div class="link_contact_et_connexion">
+                        <a class="link" href="/contact">Contact</a>
+                        <a class="link" href="/employes/login">Se connecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container_mentions">
+            <div class="link_mentions">
+                <a href="">©2023 Garage V.Parrot. Tous droits réservés.</a>
+                <a href="">Politique de confidentialité</a>
+                <a href="">Mentions légales</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>

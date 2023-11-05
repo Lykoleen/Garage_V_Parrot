@@ -6,12 +6,12 @@
             <p>Que vous recherchiez des services d'entretien, de réparation, ou que vous souhaitiez acheter une voiture d’occasion, vous êtes au bon endroit !</p>
         </div>
         <a href="/annonces/index">
-            <button class="w-50 btn btn-light btn_presentation">Voir les annonces</button>
+            <button class="btn btn-light btn_presentation">Voir les annonces</button>
         </a>
     </div>
     <div class="overlay"></div>
 </section>
-<section class="section_services">
+<section id="services" class="section_services">
     <h2>NOS SERVICES</h2>
     <div class="presentation_services">
         <div class="card_services">
@@ -61,7 +61,7 @@
 <section class="section_avis">
     <div class="container_avis_publies">
         <h2>LES AVIS DE NOS CLIENTS</h2>
-        <div class="avis_client">
+        <div class="avis_client_mobile">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php $count = 0 ?>
