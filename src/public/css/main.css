@@ -43,7 +43,7 @@ h3 {
     font-size: 1rem;
     line-height: 88%;
     text-align: center;
-    font-weight: 500;
+    font-weight: bold;
     margin: 10px 0;
 }
 
@@ -190,12 +190,11 @@ h3 {
 
 .card_services h3 {
     color: #486284;
-    font-size: 20px;
 }
 
 .card_services p {
     color: #8CA2C0;
-    font-size: 15px;
+    font-size: 13px;
     padding: 0 20px;
 }
 
@@ -242,4 +241,98 @@ h3 {
 .text_card p {
   font-weight: bold;
   margin-left: 5px; 
+}
+
+/* Section pour les avis clients */
+.container_avis {
+    width: 70%;
+    margin: auto;
+}
+
+.note_client img{
+    width: 50%;
+    margin: 10px 25%;
+    text-align: center;
+}
+
+.container_avis p {
+    color: #8CA2C0;
+    font-size: 13px;
+    margin: 20px auto;
+    height: 150px;
+}
+
+/* Section pour déposer un avis */
+
+.container_depot_avis {
+    width: 70%;
+    margin: 40px auto;
+}
+
+.container_depot_avis h3 {
+    color: #486284;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.rating {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin: 10px 0 10px 0;
+}
+
+.rating span{
+    width: 30px;
+    height: 30px;
+}
+
+.rating:hover {
+    cursor: pointer;
+}
+
+.star {
+    background-image: url(../assets/img/etoile_vote.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: background 0.4s;
+}
+
+.star.checked {
+    background-image: url(../assets/img/etoile_remplie.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition-delay: 0s;
+}
+
+.star-2.checked {
+    transition-delay: 0.1s;
+  }
+
+.star-3.checked {
+    transition-delay: 0.2s;
+  }
+
+.star-4.checked {
+    transition-delay: 0.3s;
+  }
+
+.star-5.checked {
+    transition-delay: 0.4s;
+  }
+
+
+.container_depot_avis form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container_depot_avis form button {
+    align-self: end;
+    margin-top: 10px;
+    background-color: #7F5056;
+    color: white;
+    border-radius: 24px;
+    width: 120px;
+    font-weight: bold;
 }

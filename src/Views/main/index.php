@@ -1,5 +1,3 @@
-
-
 <section class="section_presentation">
     <img class="mercedes" src="../assets/img/mercedes.jpg" alt="background de mercedes">
     <div class="container_presentation">
@@ -35,10 +33,10 @@
 </section>
 <section class="section_occasions">
     <h2>NOS VÉHICULES D'OCCASION</h2>
-    <?php 
-        $count = 0;
+    <?php
+    $count = 0;
     ?>
-    <?php foreach ($troisDernieres as $annonce): ?>
+    <?php foreach ($troisDernieres as $annonce) : ?>
         <?php $image = $images[$count]; ?>
         <div class="presentation_occasions">
             <div class="card_occasions">
@@ -46,10 +44,10 @@
                 <div class="text_card">
                     <h3><?= $annonce['title'] ?></h3>
                     <div class="p_card">
-                    <p><?= $annonce['price'] ?> €  |</p>  
-                    <p><?= $annonce['years'] ?>  |</p>  
-                    <p><?= $annonce['mileage'] ?> kms</p>
-                    </div> 
+                        <p><?= $annonce['price'] ?> € |</p>
+                        <p><?= $annonce['years'] ?> |</p>
+                        <p><?= $annonce['mileage'] ?> kms</p>
+                    </div>
                 </div>
                 <a href="/annonces/lire/<?= $annonce['id'] ?>"><button class="btn btn_annonce">Voir</button></a>
             </div>
@@ -64,28 +62,54 @@
     <div class="container_avis_publies">
         <h2>LES AVIS DE NOS CLIENTS</h2>
         <div class="avis_client">
-            <p>A Continuer</p>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php $count = 0 ?>
+                    <?php foreach ($avisActifs as $avis) : ?>
+                        <?php $active = ($count === 0) ? "active" : ''; ?>
+                        <div class="carousel-item <?= $active ?>">
+                            <div class="container_avis">
+                                <div class="note_client">
+                                    <img src="../assets/img/etoile<?= $avis['score'] ?>.jpg" alt="Note client égale à <?= $avis['score'] ?>">
+                                </div>
+                                <h3><?= $avis['surname'] ?> <?= $avis['name'] ?></h3>
+                                <p>"<?= $avis['message'] ?>"</p>
+                            </div>
+                        </div>
+                        <?php $count++ ?>
+                    <?php endforeach; ?>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="container_depot_avis">
-        <?php if(!empty($_SESSION['erreur'])): ?>
+    <div id="depot_avis" class="container_depot_avis">
+        <?php if (!empty($_SESSION['erreur'])) : ?>
             <div class="alert alert-danger" role="alert">
-                <?php echo $_SESSION['erreur']; unset($_SESSION['erreur']) ?>
+                <?php echo $_SESSION['erreur'];
+                unset($_SESSION['erreur']) ?>
             </div>
         <?php endif; ?>
-        <?php if(!empty($_SESSION['message'])): ?>
+        <?php if (!empty($_SESSION['message'])) : ?>
             <div class="alert alert-success" role="alert">
-                <?php echo $_SESSION['message']; unset($_SESSION['message']); ?>
+                <?php echo $_SESSION['message'];
+                unset($_SESSION['message']); ?>
             </div>
         <?php endif; ?>
 
         <h3>Déposez votre avis !</h3>
         <?php echo $form ?>
-        
+
     </div>
-    
+
 
 
 </section>
-

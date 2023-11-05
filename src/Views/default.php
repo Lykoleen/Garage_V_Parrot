@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/horaires.css"/>
     <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
+    <script src="/js/note.js"></script>
 </head>
 
 <body>
