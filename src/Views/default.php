@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="/css/horaires.css"/>
     <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
-    <script src="/js/note.js"></script>
 </head>
 
 <body>
@@ -77,6 +76,7 @@
 
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/note.js"></script>
 </body>
 
 </html>
