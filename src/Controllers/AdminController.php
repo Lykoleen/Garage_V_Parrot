@@ -39,8 +39,10 @@ class AdminController extends Controller
                 $employesModel = new EmployesModel;
     
                 $listeEmployes = $employesModel->findAllRoleEmploye();
+
+                $horaires = $this->renderHoraires();
     
-                $this->render('admin/employes/liste', compact('listeEmployes'));
+                $this->render('admin/employes/liste', compact('listeEmployes', 'horaires'));
 
         }
     }
@@ -93,7 +95,9 @@ class AdminController extends Controller
             ->finForm()
             ;
 
-            $this->render('admin/employes/register', ['registerForm' => $form->create()]);
+            $horaires = $this->renderHoraires();
+
+            $this->render('admin/employes/register', ['horaires' => $horaires ,'registerForm' => $form->create()]);
         }
     }
     
@@ -151,7 +155,9 @@ class AdminController extends Controller
             ->finForm()
             ;
 
-            $this->render('admin/employes/modifier', ['modifEmploye' => $form->create()]);
+            $horaires = $this->renderHoraires();
+
+            $this->render('admin/employes/modifier', ['horaires' => $horaires ,'modifEmploye' => $form->create()]);
         } else {
             // L'utilisateur n'est pas connecté
             $_SESSION['erreur'] = "Vous devez être connecté(e) pour pouvoir accéder à cette page";

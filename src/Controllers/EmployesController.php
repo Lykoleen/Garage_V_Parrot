@@ -13,7 +13,9 @@ class EmployesController extends Controller
         // On vérifie si on est connecté
         if(in_array('ROLE_EMPLOYE', $_SESSION['user']['roles']) || in_array('ROLE_ADMIN', $_SESSION['user']['roles']))
         {
-            $this->render('employes/index');
+            $horaires = $this->renderHoraires();
+
+            $this->render('employes/index', compact('horaires'));
         }
     }
 
@@ -33,7 +35,9 @@ class EmployesController extends Controller
                 }
             }
            
-            $this->render('employes/annonces', compact('annonces', 'images'));
+            $horaires = $this->renderHoraires();
+
+            $this->render('employes/annonces', compact('annonces', 'images', 'horaires'));
         }
     }
 
@@ -91,7 +95,9 @@ class EmployesController extends Controller
             ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
         ->finForm();
 
-        $this->render('employes/login', ['loginForm' => $form->create()]);
+        $horaires = $this->renderHoraires();
+        
+        $this->render('employes/login', ['horaires' => $horaires ,'loginForm' => $form->create()]);
     }
 
     /**

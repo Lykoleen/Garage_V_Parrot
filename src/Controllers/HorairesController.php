@@ -8,7 +8,11 @@ use App\Models\HorairesModel;
 
 class HorairesController extends Controller
 {
-
+    /**
+     * Modification des horaires dans le dashboard admin
+     *
+     * @return void
+     */
     public function modifier()
     {
         $instanceAdmin = new AdminController;
@@ -63,6 +67,8 @@ class HorairesController extends Controller
             ->ajoutBouton('Modifier', ['name' => 'horairesModifiées', 'class' => 'btn btn-primary my-3'])
             ->finForm();
        
-        $this->render('admin/horaires/modifier', ['form' => $form->create()]);
+        $horaires = $this->renderHoraires();
+
+        $this->render('admin/horaires/modifier', ['horaires' => $horaires ,'form' => $form->create()]);
     }
 }

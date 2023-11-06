@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/init.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/horaires.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/header.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/init.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/css/horaires.css" />
+    <link rel="stylesheet" type="text/css" href="/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/css/footer.css" />
     <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
 </head>
 
@@ -18,7 +18,7 @@
         <!-- Ici sera la nav bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img width="150" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/logo.svg" alt="logo du garage automobile de monsieur parrot vincent"></a>
+                <a class="navbar-brand" href="/"><img width="150" src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/logo.svg" alt="logo du garage automobile de monsieur parrot vincent"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,14 +41,14 @@
                         </li>
                     </ul>
                     <ul class="liste_liens navbar-nav me-auto mb-2 mb-lg-0">
-                        <?php 
-                        if(empty($_SESSION['user']['id'])): ?>
-                        <li class="nav-item me-3 me-lg-4">
-                            <a class="ms-lg-5" href="/employes/login"><img width="25" src="../assets/img/iconeconnexion.png" alt="formulaire de connexion"></a>
-                        </li>
+                        <?php
+                        if (empty($_SESSION['user']['id'])) : ?>
+                            <li class="nav-item me-3 me-lg-4">
+                                <a class="ms-lg-5" href="/employes/login"><img width="25" src="../assets/img/iconeconnexion.png" alt="formulaire de connexion"></a>
+                            </li>
                         <?php endif; ?>
-                        <?php 
-                        if(isset($_SESSION['user']) && !empty($_SESSION['user']['id'])): ?>   
+                        <?php
+                        if (isset($_SESSION['user']) && !empty($_SESSION['user']['id'])) : ?>
                             <li class="nav-item">
                                 <a class="nav-link ms-lg-5" href="/employes/index">Administration</a>
                             </li>
@@ -63,14 +63,16 @@
     </header>
 
     <main class="container">
-        <?php if(!empty($_SESSION['erreur'])): ?>
+        <?php if (!empty($_SESSION['erreur'])) : ?>
             <div class="alert alert-danger" role="alert">
-                <?php echo $_SESSION['erreur']; unset($_SESSION['erreur']) ?>
+                <?php echo $_SESSION['erreur'];
+                unset($_SESSION['erreur']) ?>
             </div>
         <?php endif; ?>
-        <?php if(!empty($_SESSION['message'])): ?>
+        <?php if (!empty($_SESSION['message'])) : ?>
             <div class="alert alert-success" role="alert">
-                <?php echo $_SESSION['message']; unset($_SESSION['message']); ?>
+                <?php echo $_SESSION['message'];
+                unset($_SESSION['message']); ?>
             </div>
         <?php endif; ?>
         <?= $contenu ?>
@@ -79,16 +81,16 @@
     <footer>
         <div class="container_infos_footer">
             <div class="logo_et_reseaux">
-                <img width="150" class="logo_blanc" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/logo_blanc.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                <img width="150" class="logo_blanc" src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/logo_blanc.svg" alt="logo du garage automobile de monsieur parrot vincent">
                 <div class="reseaux">
                     <a href="https://www.facebook.com/" target="_blank">
-                        <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/facebook.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                        <img src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/facebook.svg" alt="logo du garage automobile de monsieur parrot vincent">
                     </a>
                     <a href="https://twitter.com/" target="_blank">
-                        <img class="twitter" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/twitter.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                        <img class="twitter" src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/twitter.svg" alt="logo du garage automobile de monsieur parrot vincent">
                     </a>
                     <a href="https://www.instagram.com/" target="_blank">
-                        <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/instagram.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                        <img src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/instagram.svg" alt="logo du garage automobile de monsieur parrot vincent">
                     </a>
                 </div>
             </div>
@@ -108,8 +110,8 @@
                 <h3>Informations</h3>
                 <p>Vincent Parrot</p>
                 <div class="p_groupe1">
-                    <p>Tél. 01 02 03 04 05</p> 
-                    <p>garagevparrot@email.com</p> 
+                    <p>Tél. 01 02 03 04 05</p>
+                    <p>garagevparrot@email.com</p>
                 </div>
                 <div class="p_groupe2">
                     <p>45 avenue Général Foch</p>

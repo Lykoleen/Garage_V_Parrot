@@ -21,7 +21,9 @@ class ServicesController extends Controller
 
             $listeServices = $servicesModel->findAll();
 
-            $this->render('admin/services/liste', compact('listeServices'));
+            $horaires = $this->renderHoraires();
+
+            $this->render('admin/services/liste', compact('listeServices', 'horaires'));
         }
     }
 
@@ -63,8 +65,10 @@ class ServicesController extends Controller
                 )
                 ->ajoutBouton('Enregistrer', ['class' => 'btn btn-primary mt-2'])
                 ->finForm();
-
-            $this->render('admin/services/ajouter', ['form' => $form->create()]);
+                
+            $horaires = $this->renderHoraires();
+            
+            $this->render('admin/services/ajouter', ['horaires' => $horaires ,'form' => $form->create()]);
 
         } else {
             // L'utilisateur n'est pas l'admin
@@ -121,7 +125,9 @@ class ServicesController extends Controller
             ->ajoutBouton('Enregistrer', ['class' => 'btn btn-primary mt-2'])
             ->finForm();
 
-        $this->render('admin/services/modifier', ['form' => $form->create()]);
+        $horaires = $this->renderHoraires();
+
+        $this->render('admin/services/modifier', ['horaires' => $horaires ,'form' => $form->create()]);
         }
     }
 

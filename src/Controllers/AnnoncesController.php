@@ -19,8 +19,11 @@ class AnnoncesController extends Controller
         // On instancie le modèle correspondant à la table 'annonces'
         $annonceModel = new AnnoncesModel;
         $annonces = $annonceModel->findAll();
+
+        $horaires = $this->renderHoraires();
+
         // On génère la vue
-        $this->render('annonces/index', compact('annonces'));
+        $this->render('annonces/index', compact('annonces', 'horaires'));
     }
 
     public function lire(int $id)
@@ -30,8 +33,10 @@ class AnnoncesController extends Controller
         // On va chercher une annonce
         $annonce = $annoncesModel->find($id);
 
+        $horaires = $this->renderHoraires();
+
         // On envoie à la vue
-        $this->render('annonces/lire', compact('annonce'));
+        $this->render('annonces/lire', compact('annonce', 'horaires'));
     }
 
 
@@ -190,8 +195,10 @@ class AnnoncesController extends Controller
                 )
                 ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary mt-2', 'name' => 'Ajouter'])
                 ->finForm();
+
+            $horaires = $this->renderHoraires();
                
-            $this->render('annonces/ajouter', ['form' => $form->create()]);
+            $this->render('annonces/ajouter', ['horaires' => $horaires ,'form' => $form->create()]);
         } else {
             // L'utilisateur n'est pas connecté
             $_SESSION['erreur'] = "Vous devez être connecté(e) pour pouvoir accéder à cette page";
@@ -301,8 +308,10 @@ class AnnoncesController extends Controller
                 )
                 ->finForm();
 
+            $horaires = $this->renderHoraires();
+
             // On envoie à la vue
-            $this->render('annonces/modifier', ['form' => $form->create()]);
+            $this->render('annonces/modifier', ['horaires' => $horaires ,'form' => $form->create()]);
         } else {
             // L'utilisateur n'est pas connecté
             $_SESSION['erreur'] = "Vous devez être connecté(e) pour pouvoir accéder à cette page";
