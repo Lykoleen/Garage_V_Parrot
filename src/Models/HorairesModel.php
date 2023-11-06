@@ -40,7 +40,7 @@ class HorairesModel extends Model
     }
 
     /**
-     * Récupère toutes les horaires d'ouverture du matin
+     * Récupère tous les horaires d'ouverture du matin
      *
      * @param string $jour
      * @return void
@@ -56,7 +56,7 @@ class HorairesModel extends Model
         return $heures[$cle];
     }
     /**
-     * Récupère toutes les horaires d'ouverture du matin
+     * Récupère tous les horaires de fermeture du matin
      *
      * @param string $jour
      * @return void
@@ -72,7 +72,7 @@ class HorairesModel extends Model
         return $heures[$cle];
     }
     /**
-     * Récupère toutes les horaires d'ouverture du matin
+     * Récupère tous les horaires d'ouverture de l'aprem
      *
      * @param string $jour
      * @return void
@@ -88,7 +88,7 @@ class HorairesModel extends Model
         return $heures[$cle];
     }
     /**
-     * Récupère toutes les horaires d'ouverture du matin
+     * Récupère tous les horaires de fermeture de l'aprem
      *
      * @param string $jour
      * @return void

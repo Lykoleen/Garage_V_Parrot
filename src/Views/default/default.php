@@ -81,14 +81,28 @@
             <div class="logo_et_reseaux">
                 <img width="150" class="logo_blanc" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/logo_blanc.svg" alt="logo du garage automobile de monsieur parrot vincent">
                 <div class="reseaux">
-                    <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/facebook.svg" alt="logo du garage automobile de monsieur parrot vincent">
-                    <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/twitter.svg" alt="logo du garage automobile de monsieur parrot vincent">
-                    <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/instagram.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/facebook.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                    </a>
+                    <a href="https://twitter.com/" target="_blank">
+                        <img class="twitter" src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/twitter.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <img src="<?php realpath(dirname(__DIR__, 1))?>/assets/img/instagram.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                    </a>
                 </div>
             </div>
             <div class="horaires">
                 <h3>Horaires</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi ea voluptatem tempora quis, odio repellat illum a nobis possimus, perspiciatis fugiat nihil repudiandae perferendis</p>
+                <?php foreach ($horaires as $jour => $horaire) : ?>
+                    <div class="heures_ouverture">
+                        <p><?= substr($jour, 0, 3) ?></p>
+                        <p><?= $horaire['ouvertureMatin'][0] ?></p>
+                        <p><?= $horaire['fermetureMatin'][0] ?></p>
+                        <p><?= $horaire['ouvertureAprem'][0] ?></p>
+                        <p><?= $horaire['fermetureAprem'][0] ?></p>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <div class="infos_garage">
                 <h3>Informations</h3>
