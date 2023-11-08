@@ -28,13 +28,13 @@
                             <a class="link" aria-current="page" href="/">Accueil</a>
                         </li>
                         <li class="nav-item me-3 me-lg-4">
-                            <a class="link" href="/annonces">Nos Services</a>
+                            <a class="link" href="/#services">Nos Services</a>
                         </li>
                         <li class="nav-item me-3 me-lg-4">
                             <a class="link" href="/annonces">Les Occasions</a>
                         </li>
                         <li class="nav-item me-3 me-lg-4">
-                            <a class="link" href="/annonces">Déposer un avis</a>
+                            <a class="link" href="/#section_avis">Déposer un avis</a>
                         </li>
                         <li class="nav-item me-4 me-lg-5">
                             <a class="link" href="/annonces">Contact</a>
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="acces_rapide">
-                <h3>Accès Rapide</h3>
+                <h3>Acces Rapide</h3>
                 <div class="link_acces_rapide">
                     <div class="link_accueil_et_services">
                         <a class="link" href="/">Accueil</a>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="link_occasions_et_avis">
                         <a class="link" href="/annonces">Les occasions</a>
-                        <a class="link" href="#depot_avis">Déposer un avis</a>
+                        <a class="link" href="#section_avis">Déposer un avis</a>
                     </div>
                     <div class="link_contact_et_connexion">
                         <a class="link" href="/contact">Contact</a>

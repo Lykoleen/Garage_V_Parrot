@@ -251,7 +251,7 @@ class AnnoncesController extends Controller
 
                 // On redirige
                 $_SESSION['message'] = "Votre annonce a été modifiée avec succès";
-                header('Location: /');
+                header('Location: /employes/annonces');
                 exit;
             } else {
                 // Le formulaire n'est pas complet

@@ -19,16 +19,30 @@
     src: url("../fonts/Dm-sans/DMSans-Light.ttf") format('ttf');
 }
 
+
+@import url('https://fonts.cdnfonts.com/css/typographica');
+
+                
+
 /* Règles générales */
+body {
+    background-color: #F8F9FA;
+}
+
 .container, body {
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     max-width: 100%;
-    font-family: "DM Sans" , Arial, Times, serif;
+    font-family: "Roboto" , Arial, Times, serif;
+}
+
+section {
+    margin: auto;
+    padding: 20px 0;
 }
 
 h1, h2, h3 {
-    font-family: 'Roboto', Arial, Times, serif;
+    font-family: 'DM Sans', Arial, Times, serif;letter-spacing: 1px;
 }
 
 p {
@@ -37,17 +51,16 @@ p {
 }
 
 h2 {
-    margin: 20px auto ;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 h3 {
     font-size: 1rem;
     line-height: 88%;
     text-align: center;
-    font-weight: bold;
     margin: 10px 0;
 }
 
@@ -58,6 +71,7 @@ h3 {
     width: 100%;
     position: relative;
     display: flex;
+    justify-content: start;
     color: white;
     overflow: hidden;
 }
@@ -67,7 +81,7 @@ h3 {
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    height: 88vh;
+    height: 90vh;
     z-index: 3;
 }
 
@@ -83,7 +97,6 @@ h3 {
     margin-bottom: 20px;
     font-weight: bold;
     font-size: 1.8rem;
-    letter-spacing: 1px;
     text-shadow: #000000 1px 1px 1px;
 }
 
@@ -106,6 +119,7 @@ h3 {
 .btn_presentation{
     width: 200px;
     height: 40px;
+    margin: 30px 0;
     align-items: center;
     border-radius: 6px;
     border: #D76C58 2px solid;
@@ -115,13 +129,17 @@ h3 {
 
 .mercedes {
     width: 1200px;
-    height: 800px;
+    height: 100%;
     z-index: -10;
     position: absolute;
-    top: -30px;
     left: -300px;
     filter: blur(2px);
     transform: scale(1.1);
+}
+
+.mercedes img {
+    margin: auto;
+    width: 100%;
 }
 
 .overlay {
@@ -140,7 +158,7 @@ h3 {
 .section_occasions {
     background-color: #374158;
     color: white;
-    padding: 0.1px;
+    padding: 20px;
 }
 
 .section_services h2 {
@@ -202,6 +220,7 @@ h3 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 
 .p_card {
@@ -216,6 +235,15 @@ h3 {
 /* Section pour les avis clients */
 .container_avis {
     width: 70%;
+    margin-bottom: 40px;
+    margin: auto;
+}
+
+.container_avis_publies {
+    margin-bottom: 40px;
+}
+
+.avis_client_mobile {
     margin: auto;
 }
 
@@ -225,19 +253,29 @@ h3 {
     text-align: center;
 }
 
-.container_avis p {
+.container_avis h3, .container_avis_2 h3 {
+    color: #486284;
+    font-weight: bold;
+}
+
+.container_avis p, .container_avis_2 p {
     color: #8CA2C0;
-    font-size: 13px;
+    font-size: 14px;
     margin: 20px auto;
-    height: 150px;
+    height: 250px;
     text-align: center;
+}
+
+.container_avis_2 {
+    display: none;
 }
 
 /* Section pour déposer un avis */
 
 .container_depot_avis {
     width: 70%;
-    margin: 40px auto;
+    margin: auto;
+    margin-bottom: 40px;
     border-top: #7F5056 2px solid;
 }
 
@@ -311,4 +349,189 @@ h3 {
 
 .container_depot_avis form label {
     color: #667080;
+}
+
+/* Ecran de portable large, de 640px à 768px */
+@media only screen and (min-width: 40em) and (max-width: 48em) {
+    
+    .container_presentation {
+        max-width: 640px;
+        margin: auto;
+    }
+
+    .presentation_services, .presentation_occasions, .avis_client_mobile, .container_depot_avis {
+        max-width: 605px;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .card_services p {
+        font-size: 1rem;
+    }
+} 
+
+/* Tablette, de 768px à 1024px */
+@media only screen and (min-width: 48em) and (max-width: 64em)  {
+    .container_presentation {
+        max-width: 640px;
+        margin: auto;
+    }
+
+    .presentation_services, .presentation_occasions, .avis_client_mobile, .container_depot_avis {
+        max-width: 605px;
+    }
+
+    .mercedes {
+        width: 1200px;
+        left: -110px;
+        transform: scale(1.1);
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .card_services p {
+        font-size: 1rem;
+    }
+} 
+
+/* Ecran pc de petite taille, 1024px à 1280px */
+@media only screen and (min-width: 64em) {
+    .container_presentation {
+        justify-content: center;
+        align-items: flex-start;
+        width: 50%;
+        margin-left: 5%;
+    }
+
+    .content_presentation, .content_presentation p {
+        text-align: start;
+    }
+
+    .presentation_services, .presentation_occasions, .avis_client_mobile, .container_depot_avis {
+        max-width: auto;
+    }
+
+    .mercedes {
+        width: 1200px;
+        height: 100%;
+        top: 10px;
+        left: 10px;
+        transform: scale(1.1);
+    }
+
+    /* Section Services */
+    .presentation_services {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card_services {
+        max-width: 300px;
+    }
+
+    /* Section occasions */
+
+    .container_annonces {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 90%;
+        margin: auto;
+    }
+
+    .presentation_occasions {
+        width: 30%;
+    }
+
+    .card_occasions {
+        margin-bottom: 0;
+    }
+
+    /* Section avis */
+    .container_avis {
+        width: auto;
+    }
+
+    .container_avis_2 {
+        display: block;
+    }
+
+    .container_avis h3, .container_avis_2 h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .container_avis h3, .container_avis p, .container_avis_2 h3, .container_avis_2 p {
+        text-align: start;
+        width: 80%;
+        margin: 20px 0;
+    }
+
+    .all_container_avis {
+        display: flex;
+        width: 70%;
+        margin: auto;
+    }
+
+    .note_client img {
+        margin: 10px 0;
+    }
+}
+
+/* Ecran de pc grande taille, < 1280px */
+@media only screen and (min-width: 80em) {
+    .container_presentation {
+        width: 40%;
+    }
+
+    .mercedes {
+        width: 100%;
+        height: 120%;
+        left: 50%;
+        transform:translateX(-50%);
+    }
+
+    /* Section services */
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .section_services {
+        padding: 20px 0;
+    }
+
+    .presentation_services {
+        justify-content: space-evenly;
+    }
+
+    .card_services {
+        max-width: 350px;
+        margin-top: 10px;
+    }
+
+    .card_services h3 {
+        margin: 20px 0;
+        font-size: 1.2rem;
+    }
+    .card_services p {
+        font-size: 1rem;
+    }
+
+    /* Section avis */
+    .container_avis p, .container_avis_2 p {
+        font-size: 1rem;
+    }
+
+    .avis_client_mobile {
+        max-width: 1280px;
+    }
+
+    .container_depot_avis {
+        max-width: 900px;
+    }
+
 }

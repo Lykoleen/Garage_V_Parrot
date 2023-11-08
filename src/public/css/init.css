@@ -46,3 +46,24 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+/* Ecran de portable large, de 640px à 768px */
+@media only screen and (min-width: 40em) {
+
+} 
+
+/* Tablette, de 768px à 1024px */
+@media only screen and (min-width: 48em) {
+
+} 
+
+/* Ecran pc de petite taille, 1024px à 1280px */
+@media only screen and (min-width: 64em) {
+
+}
+
+/* Ecran de pc grande taille, < 1280px */
+@media only screen and (min-width: 80em) {
+
+}

@@ -1,13 +1,15 @@
 <section class="section_presentation">
-    <img class="mercedes" src="../assets/img/mercedes.jpg" alt="background de mercedes">
+    <div class="mercedes">
+        <img src="../assets/img/mercedes.jpg" alt="background de mercedes">
+    </div>
     <div class="container_presentation">
         <div class="content_presentation">
             <h1>BIENVENUE CHEZ NOTRE GARAGE AUTOMOBILE VINCENT PARROT</h1>
             <p>Que vous recherchiez des services d'entretien, de réparation, ou que vous souhaitiez acheter une voiture d’occasion, vous êtes au bon endroit !</p>
+            <a href="/annonces/index">
+                <button class="btn btn-light btn_presentation">Voir les annonces</button>
+            </a>
         </div>
-        <a href="/annonces/index">
-            <button class="btn btn-light btn_presentation">Voir les annonces</button>
-        </a>
     </div>
     <div class="overlay"></div>
 </section>
@@ -26,59 +28,73 @@
         </div>
         <div class="card_services">
             <img class="image_services" src="../assets/img/location.jpg" alt="photo d'un chien qui passe sa tête par la fenêtre de la voiture">
-            <h3>La location de véhicules</h3>
+            <h3>La location de vehicules</h3>
             <p>Que vous ayez besoin d'un véhicule pour un voyage d'affaires, des vacances en famille ou tout simplement pour explorer de nouveaux horizons, nous avons la solution idéale pour vous.</p>
         </div>
     </div>
 </section>
 <section class="section_occasions">
-    <h2>NOS VÉHICULES D'OCCASION</h2>
+    <h2>NOS VEHICULES D'OCCASION</h2>
     <?php
     $count = 0;
     ?>
-    <?php foreach ($troisDernieres as $annonce) : ?>
-        <?php $image = $images[$count]; ?>
-        <div class="presentation_occasions">
-            <div class="card_occasions">
-                <img src="/upload/<?= $image ?>" alt="photo de <?= $annonce['title'] ?>">
-                <div class="text_card">
-                    <h3><?= $annonce['title'] ?></h3>
-                    <div class="p_card">
-                        <p><?= $annonce['price'] ?> € |</p>
-                        <p><?= $annonce['years'] ?> |</p>
-                        <p><?= $annonce['mileage'] ?> kms</p>
+    <div class="container_annonces">
+        <?php foreach ($troisDernieres as $annonce) : ?>
+            <?php $image = $images[$count]; ?>
+            <div class="presentation_occasions">
+                <div class="card_occasions">
+                    <img src="/upload/<?= $image ?>" alt="photo de <?= $annonce['title'] ?>">
+                    <div class="text_card">
+                        <h3><?= $annonce['title'] ?></h3>
+                        <div class="p_card">
+                            <p><?= $annonce['price'] ?> € |</p>
+                            <p><?= $annonce['years'] ?> |</p>
+                            <p><?= $annonce['mileage'] ?> kms</p>
+                        </div>
                     </div>
+                    <a href="/annonces/lire/<?= $annonce['id'] ?>"><button class="btn btn_annonce">Voir</button></a>
                 </div>
-                <a href="/annonces/lire/<?= $annonce['id'] ?>"><button class="btn btn_annonce">Voir</button></a>
             </div>
-        </div>
-        <?php $count++ ?>
-    <?php endforeach; ?>
+            <?php $count++ ?>
+        <?php endforeach; ?>
+    </div>
     <div class="btn_voir_all_annonces">
         <a href="/annonces/index" class="all_annonces"><button class="btn btn-light">Toutes les annonces</button></a>
     </div>
 </section>
-<section class="section_avis">
+<section id="section_avis" class="section_avis">
     <div class="container_avis_publies">
         <h2>LES AVIS DE NOS CLIENTS</h2>
         <div class="avis_client_mobile">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <?php $count = 0 ?>
-                    <?php foreach ($avisActifs as $avis) : ?>
-                        <?php $active = ($count === 0) ? "active" : ''; ?>
-                        <div class="carousel-item <?= $active ?>">
-                            <div class="container_avis">
-                                <div class="note_client">
-                                    <img src="../assets/img/etoile<?= $avis['score'] ?>.jpg" alt="Note client égale à <?= $avis['score'] ?>">
+                    <?php for ($i = 0; $i < count($avisActifs); $i += 2) : ?>
+                        <?php $avis1 = $avisActifs[$i]; // Premier avis
+                        $avis2 = ($i + 1 < count($avisActifs)) ? $avisActifs[$i + 1] : null; // Deuxième avis (s'il existe)
+                        ?>
+                        <div class="carousel-item <?= ($i === 0) ? "active" : '' ?>">
+                            <div class="all_container_avis">
+                                <div class="container_avis">
+                                    <div class="note_client">
+                                        <img src="../assets/img/etoile<?= $avis1['score'] ?>.jpg" alt="Note client égale à <?= $avis1['score'] ?>">
+                                    </div>
+                                    <h3><?= $avis1['surname'] ?> <?= $avis1['name'] ?></h3>
+                                    <p>"<?= $avis1['message'] ?>"</p>
                                 </div>
-                                <h3><?= $avis['surname'] ?> <?= $avis['name'] ?></h3>
-                                <p>"<?= $avis['message'] ?>"</p>
+                                <?php if ($avis2) : ?>
+                                    <div class="container_avis_2">
+                                        <div class="note_client">
+                                            <img src="../assets/img/etoile<?= $avis2['score'] ?>.jpg" alt="Note client égale à <?= $avis2['score'] ?>">
+                                        </div>
+                                        <h3><?= $avis2['surname'] ?> <?= $avis2['name'] ?></h3>
+                                        <p>"<?= $avis2['message'] ?>"</p>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <?php $count++ ?>
-                    <?php endforeach; ?>
+                    <?php endfor; ?>
                 </div>
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -105,7 +121,7 @@
             </div>
         <?php endif; ?>
 
-        <h3>Déposez votre avis !</h3>
+        <h3>Deposez votre avis !</h3>
         <?php echo $form ?>
 
     </div>

@@ -1,4 +1,4 @@
-<h1>Liste des annonces</h1>
+<h1>Les occasions</h1>
 <ul>
     <?php foreach ($annonces as $annonce) : ?>
         <a href="/annonces/lire/<?= $annonce['id'] ?>">

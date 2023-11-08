@@ -38,18 +38,18 @@ class MainController extends Controller
 
         // Envoi d'un avis client en bdd
         if (Form::validate($_POST, ['name', 'surname', 'message', 'score'])) {
-
+            $avisModel = new AvisModel;
             $name = strip_tags($_POST['name']);
             $surname = strip_tags($_POST['surname']);
             $message = strip_tags(nl2br($_POST['message']));
             $score = intval($_POST['score']);
 
-            $avis->setName($name)
+            $avisModel->setName($name)
                 ->setSurname($surname)
                 ->setMessage($message)
                 ->setScore($score);
 
-            $avis->create();
+            $avisModel->create();
 
             $_SESSION['message'] = "L'équipe vous remercie pour votre commentaire. Celui-ci sera validé avant d'être publié";
             header('Location: /#depot_avis');
