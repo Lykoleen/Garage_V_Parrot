@@ -74,6 +74,7 @@ h3 {
     justify-content: start;
     color: white;
     overflow: hidden;
+    padding: 0;
 }
 
 .container_presentation {
@@ -132,6 +133,7 @@ h3 {
     height: 100%;
     z-index: -10;
     position: absolute;
+    top: 25px;
     left: -300px;
     filter: blur(2px);
     transform: scale(1.1);
@@ -356,7 +358,7 @@ h3 {
 }
 
 /* Ecran de portable large, de 640px à 768px */
-@media only screen and (min-width: 40em) and (max-width: 48em) {
+@media only screen and (min-width: 640px) and (max-width: 768px) {
     
     .container_presentation {
         max-width: 640px;
@@ -377,7 +379,7 @@ h3 {
 } 
 
 /* Tablette, de 768px à 1024px */
-@media only screen and (min-width: 48em) and (max-width: 64em)  {
+@media only screen and (min-width: 769px) and (max-width: 1024px)  {
     .container_presentation {
         max-width: 640px;
         margin: auto;
@@ -403,7 +405,7 @@ h3 {
 } 
 
 /* Ecran pc de petite taille, 1024px à 1280px */
-@media only screen and (min-width: 64em) {
+@media only screen and (min-width: 1025px) {
     .container_presentation {
         justify-content: center;
         align-items: flex-start;
@@ -422,7 +424,7 @@ h3 {
     .mercedes {
         width: 1200px;
         height: 100%;
-        top: 10px;
+        top: 25px;
         left: 10px;
         transform: scale(1.1);
     }
@@ -501,7 +503,7 @@ h3 {
 }
 
 /* Ecran de pc grande taille, < 1280px */
-@media only screen and (min-width: 80em) {
+@media only screen and (min-width: 1280px) {
     .container_presentation {
         width: 40%;
     }

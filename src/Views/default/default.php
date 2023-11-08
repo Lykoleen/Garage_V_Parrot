@@ -81,7 +81,7 @@
     <footer>
         <div class="container_infos_footer">
             <div class="logo_et_reseaux">
-                <img width="150" class="logo_blanc" src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/logo_blanc.svg" alt="logo du garage automobile de monsieur parrot vincent">
+                <img class="logo_blanc" src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/logo_blanc.svg" alt="logo du garage automobile de monsieur parrot vincent">
                 <div class="reseaux">
                     <a href="https://www.facebook.com/" target="_blank">
                         <img src="<?php realpath(dirname(__DIR__, 1)) ?>/assets/img/facebook.svg" alt="logo du garage automobile de monsieur parrot vincent">
@@ -94,53 +94,60 @@
                     </a>
                 </div>
             </div>
-            <div class="horaires">
-                <h3>Horaires</h3>
-                <?php foreach ($horaires as $jour => $horaire) : ?>
-                    <div class="heures_ouverture">
-                        <p><?= substr($jour, 0, 3) ?></p>
-                        <p><?= $horaire['ouvertureMatin'][0] ?></p>
-                        <p><?= $horaire['fermetureMatin'][0] ?></p>
-                        <p><?= $horaire['ouvertureAprem'][0] ?></p>
-                        <p><?= $horaire['fermetureAprem'][0] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="infos_garage">
-                <h3>Informations</h3>
-                <p>Vincent Parrot</p>
-                <div class="p_groupe1">
-                    <p>Tél. 01 02 03 04 05</p>
-                    <p>garagevparrot@email.com</p>
+            <div class="container_hia">
+                <div class="horaires">
+                    <!-- Controlleur des horaires dans Controller -->
+                    <h3>Horaires</h3>
+                    <?php foreach ($horaires as $jour => $horaire) : ?>
+                        <div class="heures_ouverture">
+                            <p><?= substr($jour, 0, 3) ?></p>
+                            <p><?= $horaire['ouvertureMatin'][0] ?></p>
+                            <p><?= $horaire['fermetureMatin'][0] ?></p>
+                            <p><?= $horaire['ouvertureAprem'][0] ?></p>
+                            <p><?= $horaire['fermetureAprem'][0] ?></p>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                <div class="p_groupe2">
-                    <p>45 avenue Général Foch</p>
-                    <p>31000 Toulouse</p>
+                <div class="infos_garage">
+                    <h3>Informations</h3>
+                    <p>Vincent Parrot</p>
+                    <div class="p_groupe1">
+                        <p>Tél. 01 02 03 04 05</p>
+                        <p>garagevparrot@email.com</p>
+                    </div>
+                    <div class="p_groupe2">
+                        <p>45 avenue Général Foch</p>
+                        <p>31000 Toulouse</p>
+                    </div>
                 </div>
-            </div>
-            <div class="acces_rapide">
-                <h3>Acces Rapide</h3>
-                <div class="link_acces_rapide">
-                    <div class="link_accueil_et_services">
-                        <a class="link" href="/">Accueil</a>
-                        <a class="link" href="#services">Nos services</a>
-                    </div>
-                    <div class="link_occasions_et_avis">
-                        <a class="link" href="/annonces">Les occasions</a>
-                        <a class="link" href="#section_avis">Déposer un avis</a>
-                    </div>
-                    <div class="link_contact_et_connexion">
-                        <a class="link" href="/contact">Contact</a>
-                        <a class="link" href="/employes/login">Se connecter</a>
+                <div class="acces_rapide">
+                    <h3>Acces Rapide</h3>
+                    <div class="link_acces_rapide">
+                        <div class="link_accueil_et_services">
+                            <a class="link" href="/">Accueil</a>
+                            <a class="link" href="#services">Nos services</a>
+                        </div>
+                        <div class="link_occasions_et_avis">
+                            <a class="link" href="/annonces">Les occasions</a>
+                            <a class="link" href="#section_avis">Déposer un avis</a>
+                        </div>
+                        <div class="link_contact_et_connexion">
+                            <a class="link" href="/contact">Contact</a>
+                            <a class="link" href="/employes/login">Se connecter</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container_mentions">
             <div class="link_mentions">
-                <a href="">©2023 Garage V.Parrot. Tous droits réservés.</a>
-                <a href="">Politique de confidentialité</a>
-                <a href="">Mentions légales</a>
+                <div class="droits">
+                    <a href="">©2023 Garage V.Parrot. Tous droits réservés.</a>
+                </div>
+                <div class="politique_mentions">
+                    <a href="">Politique de confidentialité</a>
+                    <a href="">Mentions légales</a>
+                </div>
             </div>
         </div>
     </footer>

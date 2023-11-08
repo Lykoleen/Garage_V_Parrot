@@ -47,23 +47,23 @@ table {
 	border-spacing: 0;
 }
 
-
 /* Ecran de portable large, de 640px à 768px */
-@media only screen and (min-width: 40em) {
+@media only screen and (min-width: 640px) and (max-width: 768px) {
 
 } 
 
 /* Tablette, de 768px à 1024px */
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
 
 } 
 
 /* Ecran pc de petite taille, 1024px à 1280px */
-@media only screen and (min-width: 64em) {
+@media only screen and (min-width: 1025px)
+{
 
 }
 
 /* Ecran de pc grande taille, < 1280px */
-@media only screen and (min-width: 80em) {
+@media only screen and (min-width: 1280px) {
 
 }
