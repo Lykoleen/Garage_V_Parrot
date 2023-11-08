@@ -302,6 +302,22 @@ class Form
         $this->formCode .= "</div>";
         return $this;
     }
+
+    public function ouvertureDiv(array $attributs = []): self 
+    {
+        $this->formCode .= "<div ";
+        $this->formCode .= $this->ajoutAttributs($attributs);
+        $this->formCode .= ">";
+
+        return $this;
+    }
+
+    public function fermetureDiv(): self
+    {
+        $this->formCode .= "</div>";
+
+        return $this;
+    }
 }   
 
 ?>

@@ -347,6 +347,10 @@ h3 {
     font-weight: bold;
 }
 
+.container_depot_avis form input, .container_depot_avis form textarea {
+    background-color: #EEF1F4;
+}
+
 .container_depot_avis form label {
     color: #667080;
 }
@@ -453,7 +457,8 @@ h3 {
 
     /* Section avis */
     .container_avis {
-        width: auto;
+        width: auto;    
+        max-width: 50%;
     }
 
     .container_avis_2 {
@@ -479,6 +484,19 @@ h3 {
 
     .note_client img {
         margin: 10px 0;
+        width: 50%;
+    }
+
+    .full_name {
+        display: flex;
+        margin-bottom: 15px;
+        gap: 20px;
+    }
+
+    .name_client, .surname_client {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
     }
 }
 
