@@ -1,0 +1,26 @@
+.accueil_administration {
+    width: 80%;
+    margin: 60px auto;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.liste_gestion_administration ul li {
+    margin-top: 10px;
+    list-style-type: disclosure-closed;
+}
+
+.liste_gestion_administration ul li a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+}
+
+.liste_gestion_administration ul li a:hover {
+    cursor: pointer;
+    color: #D76C58;
+}

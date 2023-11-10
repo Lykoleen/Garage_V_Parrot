@@ -163,26 +163,26 @@ class AnnoncesController extends Controller
                 ->ajoutInput(
                     'text',
                     'title',
-                    ['id' => 'title', 'class' => 'form-control mb-2', 'value' => $title]
+                    ['id' => 'title', 'class' => 'form-control my-2', 'value' => $title]
                 )
                 ->ajoutLabelFor('price', 'Prix :')
                 ->ajoutInput('number', 
                 'price', 
-                ['id' => 'price', 'class' => 'form-control mb-2', 'value' => $price]
+                ['id' => 'price', 'class' => 'form-control my-2', 'value' => $price]
                 )
                 ->ajoutLabelFor('years', 'Année :')
                 ->ajoutInput('number', 
                 'years', 
-                ['id' => 'years', 'class' => 'form-control mb-2', 'value' => $years]
+                ['id' => 'years', 'class' => 'form-control my-2', 'value' => $years]
                 )
                 ->ajoutLabelFor('mileage', 'Kilométrage')
-                ->ajoutInput('number', 'mileage', ['id' => 'mileage', 'class' => 'form-control mb-2', 'value' => $mileage]
+                ->ajoutInput('number', 'mileage', ['id' => 'mileage', 'class' => 'form-control my-2', 'value' => $mileage]
                 )
                 ->ajoutLabelFor('', 'Type(s) de carburant :')
                 ->ajoutRadio( 
                 ['Diesel', 'Essence', 'Hybride', 'Electrique'],
                 ['Diesel', 'Essence', 'Hybride', 'Electrique'],
-                ['name' => 'energy', 'class' => 'mb-1']
+                ['name' => 'energy']
                 )
                 ->ajoutLabelFor('description', 'Texte de l\'annonce', ['class' => 'mt-2'])
                 ->ajoutTextarea('description', $description, ['id' => 'description', 'rows' => '15', 'col' => '20', 'class' => 'form-control my-2', 'max-length' => '4000'])
@@ -190,10 +190,10 @@ class AnnoncesController extends Controller
                 ->ajoutInput(
                     'file',
                     'image[]',
-                    ['id' => 'image', 'class' => 'form-control'],
+                    ['id' => 'image', 'class' => 'form-control my-2'],
                     'multiple'
                 )
-                ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary mt-2', 'name' => 'Ajouter'])
+                ->ajoutBouton('Ajouter', ['class' => 'btn btn-primary my-4', 'name' => 'Ajouter'])
                 ->finForm();
 
             $horaires = $this->renderHoraires();
@@ -265,25 +265,25 @@ class AnnoncesController extends Controller
                 ->ajoutLabelFor('title', 'Titre de l\'annonce :')
                 ->ajoutInput('text', 'title', [
                     'id' => 'title',
-                    'class' => 'form-control mb-2',
+                    'class' => 'form-control my-2',
                     'value' => $annonce['title']
                 ])
                 ->ajoutLabelFor('price', 'Prix :')
                 ->ajoutInput('number', 'price', [
                     'id' => 'price',
-                    'class' => 'form-control mb-2',
+                    'class' => 'form-control my-2',
                     'value' => $annonce['price']
                 ])
                 ->ajoutLabelFor('years', 'Année :')
                 ->ajoutInput('number', 'years', [
                     'id' => 'years',
-                    'class' => 'form-control mb-2',
+                    'class' => 'form-control my-2',
                     'value' => $annonce['years']
                 ])
                 ->ajoutLabelFor('mileage', 'Kilométrage :')
                 ->ajoutInput('number', 'mileage', [
                     'id' => 'mileage',
-                    'class' => 'form-control mb-2',
+                    'class' => 'form-control my-2',
                     'value' => $annonce['mileage']
                 ])
                 ->ajoutLabelFor('description', 'Description :')
@@ -293,18 +293,18 @@ class AnnoncesController extends Controller
                     ['id' => 'description',
                     'rows' => '10', 
                     'cols' => '10', 
-                    'class' => 'form-control mb-2', 
+                    'class' => 'form-control my-2', 
                     'max-length' => '4000']
                 )
-                ->ajoutLabelFor('energy', 'Séléctionner le carburant avant de valider :', ['class' => 'text-danger fs-3 '])
+                ->ajoutLabelFor('energy', 'Séléctionner le carburant avant de valider :', ['class' => 'text-danger fs-3 my-2 '])
                 ->ajoutRadio( 
                 ['Diesel', 'Essence', 'Hybride', 'Electrique'],
                 ['Diesel', 'Essence', 'Hybride', 'Electrique'],
-                ['name' => 'energy', 'id' => 'energy']
+                ['name' => 'energy', 'id' => 'energy', 'class' => 'my-2']
                 )
                 ->ajoutBouton(
                     'Modifier l\'annonce',
-                    ['class' => 'btn btn-primary mt-2', 'name' => 'Ajouter']
+                    ['class' => 'btn btn-primary mt-4', 'name' => 'Ajouter']
                 )
                 ->finForm();
 

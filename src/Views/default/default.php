@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/init.css" />
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="/css/horaires.css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin/horaires.css" />
     <link rel="stylesheet" type="text/css" href="/css/header.css" />
     <link rel="stylesheet" type="text/css" href="/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin/accueilAdministration.css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin/services.css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin/employes.css" />
+    <link rel="stylesheet" type="text/css" href="/css/admin/annonces.css" />
     <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
 </head>
 
@@ -24,19 +28,19 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="liste_liens navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
-                        <li class="nav-item me-3 me-lg-4">
+                        <li class="nav-item me-lg-3 me-xl-4">
                             <a class="link" aria-current="page" href="/">Accueil</a>
                         </li>
-                        <li class="nav-item me-3 me-lg-4">
+                        <li class="nav-item me-lg-3 me-xl-4">
                             <a class="link" href="/#services">Nos Services</a>
                         </li>
-                        <li class="nav-item me-3 me-lg-4">
+                        <li class="nav-item me-lg-3 me-xl-4">
                             <a class="link" href="/annonces">Les Occasions</a>
                         </li>
-                        <li class="nav-item me-3 me-lg-4">
+                        <li class="nav-item me-lg-3 me-xl-4">
                             <a class="link" href="/#section_avis">Déposer un avis</a>
                         </li>
-                        <li class="nav-item me-4 me-lg-5">
+                        <li class="nav-item me-lg-3 me-xl-4">
                             <a class="link" href="/annonces">Contact</a>
                         </li>
                     </ul>
