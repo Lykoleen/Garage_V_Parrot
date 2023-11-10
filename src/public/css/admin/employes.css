@@ -1,0 +1,35 @@
+/* Page de connexion */
+
+.container_page_connexion {
+    width: 95%;
+    margin: 40px auto;
+}
+
+.container_page_connexion input{
+max-width: 400px;
+}
+
+/* Page liste des employés */
+
+.container_liste_employes {
+    width: 95%;
+    margin: 40px auto;
+}
+
+/* Page modifier un employé */
+
+.container_modifier_employe {
+    width: 95%;
+    margin: 40px auto;
+}
+
+/* Page ajouter un employé */
+
+.container_ajout_employe {
+    width: 95%;
+    margin: 40px auto;
+}
+
+.container_ajout_employe input {
+    max-width: 400px;
+}

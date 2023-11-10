@@ -1,0 +1,37 @@
+/* Page liste des annonces */
+
+.container_liste_annonces {
+    width: 95%;
+    margin: 40px auto;
+}
+
+/* Page modifier une annonce */
+
+.container_modifier_annonces {
+    width: 95%;
+    margin: 40px auto;
+}
+
+.container_modifier_annonces input {
+    max-width: 500px;
+}
+
+.radio-pair {
+    margin-top: 10px;
+    height: 20px;
+}
+
+.radio-pair label {
+    padding-top: 5px;
+}
+
+/* Page ajouter une annonce */
+
+.container_ajouter_annonce {
+    width: 95%;
+    margin: 40px auto;
+}
+
+.container_ajouter_annonce input {
+    max-width: 500px;
+}

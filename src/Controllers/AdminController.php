@@ -88,9 +88,9 @@ class AdminController extends Controller
 
         $form->debutForm()
             ->ajoutLabelFor('email', 'E-mail :')
-            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control my-2'])
             ->ajoutLabelFor('pass', 'Mot de passe : ')
-            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control'])
+            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control my-2'])
             ->ajoutBouton('Enregistrer', ['class' => 'btn btn-primary'])
             ->finForm()
             ;
@@ -148,9 +148,9 @@ class AdminController extends Controller
 
         $form->debutForm()
             ->ajoutLabelFor('email', 'E-mail :')
-            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'value' => $employe['email']])
+            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control my-2', 'value' => $employe['email']])
             ->ajoutLabelFor('pass', 'Mot de passe : ')
-            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control', 'value' => $employe['password']])
+            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control my-2', 'value' => $employe['password']])
             ->ajoutBouton('Modifier', ['class' => 'btn btn-primary'])
             ->finForm()
             ;

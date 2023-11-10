@@ -1,0 +1,20 @@
+/* Page Liste des services */
+
+.container_liste_services {
+    width: 95%;
+    margin: 40px auto;
+}
+
+/* Page Modifier les services */
+
+.container_modifier_services {
+    width: 95%;
+    margin: 40px auto;
+}
+
+/* Page Ajouter un service */
+
+.container_ajouter_sevices {
+    width: 95%;
+    margin: 40px auto;
+}
