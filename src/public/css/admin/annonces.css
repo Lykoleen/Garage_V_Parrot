@@ -12,6 +12,10 @@
     margin: 40px auto;
 }
 
+.container_modifier_annonces input {
+    max-width: 500px;
+}
+
 .radio-pair {
     margin-top: 10px;
     height: 20px;
@@ -26,4 +30,8 @@
 .container_ajouter_annonce {
     width: 95%;
     margin: 40px auto;
+}
+
+.container_ajouter_annonce input {
+    max-width: 500px;
 }

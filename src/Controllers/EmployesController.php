@@ -89,10 +89,10 @@ class EmployesController extends Controller
 
         $form->debutForm()
             ->ajoutLabelFor('email', 'E-mail :')
-            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+            ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control my-2'])
             ->ajoutLabelFor('pass', 'Mot de passe : ')
-            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control'])
-            ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
+            ->ajoutInput('password', 'password', ['id' => 'pass', 'class' => 'form-control my-2'])
+            ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary mt-4'])
         ->finForm();
 
         $horaires = $this->renderHoraires();
