@@ -93,7 +93,7 @@ class AnnoncesController extends Controller
                 $filetmps = $_FILES["image"]["tmp_name"];
                 $fileerrors = $_FILES["image"]["error"];
                 
-                function validateAndUploadFiles($filenames, $filetypes, $filetmps, $fileerrors, $allowed) {
+                function validateAndUploadFilesAnnonces($filenames, $filetypes, $filetmps, $fileerrors, $allowed) {
                     $counter = 1;
                     $uploaded_files = [];
                 
@@ -137,7 +137,7 @@ class AnnoncesController extends Controller
                     return $uploaded_files;
                 }
                 
-                validateAndUploadFiles($filenames, $filetypes, $filetmps, $fileerrors, $allowed);
+                validateAndUploadFilesAnnonces($filenames, $filetypes, $filetmps, $fileerrors, $allowed);
 
                 
                 // On redirige

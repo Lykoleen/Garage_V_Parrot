@@ -35,7 +35,7 @@ class AnnoncesModel extends Model
      */
     public function getAnnoncesDec()
     {
-        return $this->querys("SELECT * FROM annonces ORDER BY id DESC LIMIT 3")->fetchAll();
+        return $this->querys("SELECT * FROM $this->table ORDER BY id DESC LIMIT 3")->fetchAll();
     }
 
     /**
@@ -45,7 +45,7 @@ class AnnoncesModel extends Model
      */
     public function getLastId()
     {
-        return $this->querys("SELECT MAX(id) as annonce_id FROM annonces")->fetch();
+        return $this->querys("SELECT MAX(id) as annonce_id FROM $this->table")->fetch();
     }
 
     /**
@@ -60,9 +60,15 @@ class AnnoncesModel extends Model
         $this->querys('DELETE FROM images_voiture WHERE annonces_id = :id', [':id' => $id]);
 
         // Ensuite, on supprime l'annonce elle-même
-        return $this->querys('DELETE FROM annonces WHERE id = :id', [':id' => $id]);
+        return $this->querys("DELETE FROM $this->table WHERE id = :id", [':id' => $id]);
     }
 
+    /**
+     * Récupère le nom des images associées aux annonces
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function getNamesImages($id)
     {
         return $this->querys("SELECT name FROM images_voiture WHERE annonces_id = :id", [':id' => $id])->fetchAll();

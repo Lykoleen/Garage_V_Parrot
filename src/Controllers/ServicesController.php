@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\AdminController;
 use App\Core\Form;
+use App\Models\ImageServiceModel;
 use App\Models\ServicesModel;
 
 class ServicesController extends Controller
@@ -36,15 +37,80 @@ class ServicesController extends Controller
         if ($isAdmin)
         {
             // On vérifie si le formulaire est complet
-            if (Form::validate($_POST, ['title'])) {
+            if (Form::validate($_POST, ['title' , 'description'])) {
                 // Protection contre les failles xss
                 $title = strip_tags($_POST['title']);
+                $description = strip_tags($_POST['description']);
 
                 $services = new ServicesModel;
 
-                $services->setTitle($title);
+                $services->setTitle($title)
+                        ->setDescription($description);
 
                 $services->create();
+
+                 // On procède aux vérifications de l'envoie des images
+                // On vérifie toujours l'extension et le type mime
+                $allowed = [
+                    "jpg" => "image/jpeg",
+                    "jpeg" => "image/jpeg",
+                    "png" => "image/png",
+                    "svg" => "image/svg+xml",
+                    "tif" => "image/tiff",
+                    "tiff" => "image/tiff",
+                    "webp" => "image/webp"
+                ];
+                
+                $filenames = $_FILES["image"]["name"];
+                $filetypes = $_FILES["image"]["type"];
+                $filetmps = $_FILES["image"]["tmp_name"];
+                $fileerrors = $_FILES["image"]["error"];
+                
+                function validateAndUploadFilesServices($filenames, $filetypes, $filetmps, $fileerrors, $allowed) {
+                    $counter = 1;
+                    $uploaded_files = [];
+                
+                    foreach ($filenames as $key => $filename) {
+                        $path_info = pathinfo($filename);
+                        $extension = strtolower($path_info['extension']);
+                        $filetype = $filetypes[$key];
+                        $fileerror = $fileerrors[$key];
+                
+                        if ($fileerror !== 0 || !array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)) {
+                            // L'erreur s'est produite lors du téléchargement ou l'extension ou le type de fichier n'est pas autorisé
+                            die("Erreur : Téléchargement, extension ou type de fichier incorrect");
+                        }
+                
+                        $newname = md5(uniqid()) . "_" . $counter; // Utilisez un nom unique pour chaque fichier
+                        $newfilename = "../public/upload/$newname.$extension";
+                
+                        if (!move_uploaded_file($filetmps[$key], $newfilename)) {
+                            die("L'upload a échoué");
+                        }
+                        
+                        $imageModel = new ImageServiceModel;
+                        $service = new ServicesModel;
+                        // On récupère l'id du service envoyée + le nom de l'image avec son extension
+                        $nomImageAvecExtension = $newname . '.' . $extension;
+                        $ArrayId = $service->getLastId();
+                        $servicesId = (int)$ArrayId['services_id'];
+                        // On hydrate
+                        $imageModel->setName($nomImageAvecExtension);
+                        $imageModel->setServices_id($servicesId);
+                        var_dump($imageModel); 
+                        // On enregistre
+                        $imageModel->create();
+
+                        
+                        chmod($newfilename, 0644); // On interdit l'exécution du fichier
+                        $uploaded_files[] = $newfilename;
+                        $counter++;
+                    }
+                
+                    return $uploaded_files;
+                }
+                
+                validateAndUploadFilesServices($filenames, $filetypes, $filetmps, $fileerrors, $allowed);
 
                 $_SESSION['message'] = "Un nouveau service a été enregistré avec succès";
                 header('Location: /services/listeServices');
@@ -56,12 +122,20 @@ class ServicesController extends Controller
 
             $form = new Form;
 
-            $form->debutForm()
+            $form->debutForm('post' , '#', ['enctype' => 'multipart/form-data'])
                 ->ajoutLabelFor('title', 'Nom du service :')
                 ->ajoutInput(
                     'text',
                     'title',
-                    ['id' => 'title', 'class' => 'form-control mt-2']
+                    ['id' => 'title', 'class' => 'form-control my-2']
+                )
+                ->ajoutLabelFor('description', 'Description :')
+                ->ajoutInput('text', 'description', ['id' => 'description', 'class' => 'form-control my-2'])
+                ->ajoutLabelFor('image', 'Image :')
+                ->ajoutInput(
+                    'file',
+                    'image[]',
+                    ['id' => 'image', 'class' => 'form-control my-2']
                 )
                 ->ajoutBouton('Enregistrer', ['class' => 'btn btn-primary mt-2'])
                 ->finForm();
@@ -96,12 +170,14 @@ class ServicesController extends Controller
                 exit;
             }
 
-            if (Form::validate($_POST, ['title'])) {
+            if (Form::validate($_POST, ['title', 'description'])) {
                 $title = strip_tags($_POST['title']);
+                $description = strip_tags($_POST['description']);
 
                 $serviceModif = new ServicesModel;
 
-                $serviceModif->setTitle($title);
+                $serviceModif->setTitle($title)
+                            ->setDescription($description);
 
                 $serviceModif->update($service['id']);
 
@@ -120,7 +196,13 @@ class ServicesController extends Controller
             ->ajoutInput(
                 'text',
                 'title',
-                ['id' => 'title', 'class' => 'form-control mt-2', 'value' => $service['title']]
+                ['id' => 'title', 'class' => 'form-control my-2', 'value' => $service['title']]
+            )
+            ->ajoutLabelFor('description', 'Description :')
+            ->ajoutInput(
+                'text',
+                'description',
+                ['id' => 'description', 'class' => 'form-control my-2', 'value' => $service['description']]
             )
             ->ajoutBouton('Enregistrer', ['class' => 'btn btn-primary mt-2'])
             ->finForm();
@@ -132,15 +214,27 @@ class ServicesController extends Controller
     }
 
     public function supprimeServices(int $id)
-    {
+    { 
         $instanceAdmin = new AdminController;
-
         $isAdmin = $instanceAdmin->isAdmin();
+
+        $dossier = '../public/upload/';
+        $services = new ServicesModel;
+        $arrayImages =  $services->getNamesImages($id);
+
+        foreach ($arrayImages as $array) {
+            foreach ($array as $cle => $valeur) {
+                $cheminImage = $dossier . $valeur;
+  
+                if (file_exists($cheminImage)) {
+                    unlink($cheminImage);
+                }
+            }
+        }
 
         if($isAdmin)
         {
-                $services = new ServicesModel;
-                $services->delete($id);
+                $services->deleteImagesEtService($id);
                 header('Location: '.$_SERVER['HTTP_REFERER']);
         }
     }

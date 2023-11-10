@@ -16,21 +16,17 @@
 <section id="services" class="section_services">
     <h2>NOS SERVICES</h2>
     <div class="presentation_services">
-        <div class="card_services">
-            <img class="image_services" src="../assets/img/atelier.jpg" alt="photo de réparation d'un phare">
-            <h3>L'atelier</h3>
-            <p>Notre atelier est l'endroit idéal pour prendre soin de votre véhicule. Que vous ayez besoin d'un entretien régulier ou de réparations mécaniques sur votre voiture, notre équipe de professionnels qualifiés est là pour répondre à tous vos besoins.</p>
-        </div>
-        <div class="card_services">
-            <img class="image_services" src="../assets/img/tuto.jpg" alt="photo de deux personnes dans une voiture">
-            <h3>Nos conseils et tutos</h3>
-            <p>Nos experts dévoués sont là pour répondre à toutes vos questions, qu'il s'agisse d'entretien de routine, de dépannage en cas de panne, ou même de projets de personnalisation de votre voiture.</p>
-        </div>
-        <div class="card_services">
-            <img class="image_services" src="../assets/img/location.jpg" alt="photo d'un chien qui passe sa tête par la fenêtre de la voiture">
-            <h3>La location de vehicules</h3>
-            <p>Que vous ayez besoin d'un véhicule pour un voyage d'affaires, des vacances en famille ou tout simplement pour explorer de nouveaux horizons, nous avons la solution idéale pour vous.</p>
-        </div>
+        <?php $countService = 0 ?>
+        <?php foreach ($services as $service) : ?>
+            <?php $imageService = $imagesServices[$countService] ?>
+            <div class="card_services">
+                <img class="image_services" src="/upload/<?= $imageService ?>" alt="photo du service <?= $service['title'] ?>">
+                <h3><?= $service['title'] ?></h3>
+                <p>"<?= $service['description'] ?>"</p>
+            </div>
+        <?php $countService++ ?>
+        <?php endforeach; ?>
+        
     </div>
 </section>
 <section class="section_occasions">

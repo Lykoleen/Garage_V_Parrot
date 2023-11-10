@@ -6,11 +6,26 @@ use App\Models\AnnoncesModel;
 use App\Models\AvisModel;
 use App\Core\Form;
 use App\Models\HorairesModel;
+use App\Models\ServicesModel;
 
 class MainController extends Controller
 {
     public function index()
     {
+        // Récupère tous les services
+        $servicesModel = new ServicesModel;
+        $services = $servicesModel->findAll();
+        
+        //Récupère toutes les images des services
+        $imagesServices = [];
+        foreach ($services as $service) {
+            $serviceImage = $servicesModel->getImage($service['id']);
+            foreach ($serviceImage as $cle => $valeur) {
+                $imagesServices[] = $valeur;
+            }
+        }
+
+
         $annonces = new AnnoncesModel;
 
         $troisDernieres = $annonces->getAnnoncesDec();
@@ -82,6 +97,6 @@ class MainController extends Controller
 
         $horaires = $this->renderHoraires();
 
-        $this->render('main/index', ['troisDernieres' => $troisDernieres, 'images' => $images, 'avisActifs' => $avisActifs, 'horaires' => $horaires ,'form' => $form->create()]);
+        $this->render('main/index', ['troisDernieres' => $troisDernieres, 'images' => $images, 'avisActifs' => $avisActifs,'services' => $services, 'imagesServices' => $imagesServices ,'horaires' => $horaires ,'form' => $form->create()]);
     }
 }
