@@ -69,4 +69,6 @@ Flexibilité totale pour ajuster les horaires d'ouverture selon vos besoins.
 
 ## Auteur 🖋️
 
+Tony RABILLARD
+
 [Mon Github](https://github.com/Lykoleen)

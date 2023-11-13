@@ -491,6 +491,7 @@ h3 {
 
     .container_avis_2 {
         display: block;
+        width: 100%;
     }
 
     .container_avis h3, .container_avis_2 h3 {
