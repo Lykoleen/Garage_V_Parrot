@@ -1,4 +1,6 @@
+
 <div class="container_liste_annonces">
+
     <h1 class="mt-2">Listes de toutes les annonces</h1>
     
     <a href="/annonces/ajouter"><button class="btn btn-outline-success my-3">Ajouter une annonce</button></a>

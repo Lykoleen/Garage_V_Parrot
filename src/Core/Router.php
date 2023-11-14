@@ -58,12 +58,7 @@ class Router
                 echo 'La page n\'existe pas';
             }
         }else {
-            if ($uri === '/public/upload') {
-                // Instanciez le contrôleur qui gère le téléchargement
-                $uploadController = new UploadController;
-                // Appelez la méthode de traitement du téléchargement
-                $uploadController->upload();
-            } else {
+            
                 // On a pas de paramètres, on instancie le contrôleur par défaut
                 $controller = new MainController;
                 // On appelle la méthode index
@@ -71,6 +66,6 @@ class Router
             }
         }
     }
-}
+
 
 ?>

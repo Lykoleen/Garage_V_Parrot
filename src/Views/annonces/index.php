@@ -1,3 +1,5 @@
+<?php $pageTitle = 'Les occasions' ?>
+
 <h1>Les occasions</h1>
 <ul>
     <?php foreach ($annonces as $annonce) : ?>

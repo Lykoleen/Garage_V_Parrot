@@ -1,3 +1,5 @@
+<?= $pageTitle = $annonce['title'] ?>
+
 <h2>Carousel photos voitures ici</h2>
 <br>
 

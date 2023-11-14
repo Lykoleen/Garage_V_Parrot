@@ -1,12 +1,20 @@
 /* Page de connexion */
 
 .container_page_connexion {
-    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 40px auto;
 }
 
-.container_page_connexion input{
-max-width: 400px;
+.container_page_connexion form {
+    width: 80%;
+    max-width: 400px;
+}
+
+.container_page_connexion button {
+    width: 50%;
+    transform: translateX(50%);
 }
 
 /* Page liste des employés */

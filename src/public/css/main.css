@@ -15,12 +15,12 @@
 }
 
 @font-face {
-    font-family: "DM Sans";
-    src: url("../fonts/Dm-sans/DMSans-Light.ttf") format('ttf');
+    font-family: "Yeseva One";
+    src: url("../fonts/Yaevesa/YesevaOne-Regular.ttf") format('ttf');
 }
 
 
-@import url('https://fonts.cdnfonts.com/css/typographica');
+
 
                 
 
@@ -59,7 +59,7 @@ section {
 }
 
 h1, h2, h3 {
-    font-family: 'DM Sans', Arial, Times, serif;letter-spacing: 1px;
+    font-family: 'Yeseva One', Arial, Times, serif;letter-spacing: 1px;
 }
 
 p {
@@ -206,8 +206,6 @@ h3 {
 }
 
 .card_services img, .card_occasions img {
-    width: auto;
-    max-height: 400px;
     border-radius: 24px;
 }
 

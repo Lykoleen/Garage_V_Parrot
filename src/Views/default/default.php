@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
+    <meta name="description" content="Le garage automobile V_Parrot du lundi au vendredi de 9h à 12h et de 14h à 19h ainsi que le samedi de 8h à 12h. Toute notre équipe est là pour répondre à vos besoins ! Pour réviser ou réparer votre véhicule, ou si vous chercher un véhicules d'occasion. Vous êtes au bon endroit !">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Rabillard Tony">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/init.css" />
     <link rel="stylesheet" type="text/css" href="/css/main.css" />
@@ -14,7 +18,6 @@
     <link rel="stylesheet" type="text/css" href="/css/admin/services.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin/employes.css" />
     <link rel="stylesheet" type="text/css" href="/css/admin/annonces.css" />
-    <title>Garage V_Parrot - <?= $pageTitle ?? 'Accueil' ?></title>
 </head>
 
 <body>
