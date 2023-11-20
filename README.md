@@ -28,7 +28,7 @@ Vincent Parrot, fort de ses 15 années d'expérience dans la réparation automob
 |-----------|-----------|
 | PHP | 8 . 1 . 10 |
 | Composer | 2 . 5 . 8 |
-| MYSQL | 8 . 0 . 30 |
+| MYSQL | 8 . 2 . 0 |
 | Apache | 2 . 4 . 54 |
 | Bootstrap | 5 . 1 . 3 |
 
