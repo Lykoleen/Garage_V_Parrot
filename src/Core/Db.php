@@ -14,7 +14,7 @@ class Db extends PDO
     // Information de connexion à la db
     private const DBHOST = 'localhost';
     private const DBUSER = 'root';
-    private const DBPASS = '';
+    private const DBPASS = 'Increcregym777@';
     private const DBNAME = 'garage_v_parrot';
 
     private function __construct()
