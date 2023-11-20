@@ -35,7 +35,7 @@ CREATE TABLE `annonces` (
   `mileage` int NOT NULL,
   `description` mediumtext NOT NULL,
   `energy` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `annonces`
@@ -53,13 +53,13 @@ INSERT INTO `annonces` (`id`, `title`, `years`, `price`, `mileage`, `description
 --
 
 CREATE TABLE `avis` (
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `message` varchar(1500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4  NOT NULL,
+  `message` varchar(1500) CHARACTER SET utf8mb4  NOT NULL,
   `score` int NOT NULL,
-  `surname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `surname` varchar(50) CHARACTER SET utf8mb4  NOT NULL,
   `is_actif` tinyint(1) DEFAULT '0',
   `id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `avis`
@@ -80,10 +80,10 @@ INSERT INTO `avis` (`name`, `message`, `score`, `surname`, `is_actif`, `id`) VAL
 
 CREATE TABLE `employes` (
   `id` int NOT NULL,
-  `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(60) CHARACTER SET utf8mb4  NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4  NOT NULL,
   `roles` varchar(50) DEFAULT '["ROLE_EMPLOYE"]'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employes`
@@ -107,7 +107,7 @@ CREATE TABLE `horaires` (
   `ouverture` time DEFAULT NULL,
   `fermeture` time DEFAULT NULL,
   `ferme` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `horaires`
@@ -137,9 +137,9 @@ INSERT INTO `horaires` (`id`, `jour`, `plage`, `ouverture`, `fermeture`, `ferme`
 
 CREATE TABLE `images_service` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
   `services_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `images_service`
@@ -158,9 +158,9 @@ INSERT INTO `images_service` (`id`, `name`, `services_id`) VALUES
 
 CREATE TABLE `images_voiture` (
   `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4  NOT NULL,
   `annonces_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `images_voiture`
@@ -189,9 +189,9 @@ INSERT INTO `images_voiture` (`id`, `name`, `annonces_id`) VALUES
 
 CREATE TABLE `services` (
   `id` int NOT NULL,
-  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `description` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(50) CHARACTER SET utf8mb4  NOT NULL,
+  `description` varchar(1000) CHARACTER SET utf8mb4  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `services`
@@ -210,11 +210,11 @@ INSERT INTO `services` (`id`, `title`, `description`) VALUES
 
 CREATE TABLE `v_parrot` (
   `name` varchar(50) DEFAULT NULL,
-  `adress` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `adress` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
   `telephone` int DEFAULT NULL,
   `id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
