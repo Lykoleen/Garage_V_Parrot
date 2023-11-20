@@ -16,7 +16,11 @@ Vincent Parrot, fort de ses 15 années d'expérience dans la réparation automob
     ```
     composer install
     ```
-- Importer le fichier `create_bdd.sql` depuis le dossier `docs` dans votre SGBD.
+- Importer le fichier `donnees.sql` depuis le dossier `docs` dans votre SGBD. Il contient la création des tables et les données. Le fichier creat_bdd.sql ainsi que toutes les requêtes dans mes models ont été écrit à la main pour valider la compétence sql.
+
+- Pour tester l'insertion d'une nouvelle annonce par exemple. Il y a des images de voitures disponibles dans assets/img.
+
+- Pour tester l'ajout d'un avis client. L'activation d'un avis client n'est pas encore disponible depuis le dashboard de l'administrateur. Il faudra donc modifier directement depuis le SGBD la colonne `is_actif` de la table `avis` et passer la valeur à 1 pour que l'avis soit visible sur le site.
 
 ## Les technos utilisées: 🎨
 
@@ -24,7 +28,7 @@ Vincent Parrot, fort de ses 15 années d'expérience dans la réparation automob
 |-----------|-----------|
 | PHP | 8 . 1 . 10 |
 | Composer | 2 . 5 . 8 |
-| MYSQL | 8 . 0 . 30 |
+| MYSQL | 8 . 2 . 0 |
 | Apache | 2 . 4 . 54 |
 | Bootstrap | 5 . 1 . 3 |
 

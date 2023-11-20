@@ -1,4 +1,6 @@
-<?php $pageTitle = 'Les occasions' ?>
+<?php $pageTitle = 'Les occasions';
+$metaDescription = "Retrouvez ici tous nos véhicules d'occasions parmis une large gamme."
+?>
 
 <h1>Les occasions</h1>
 <ul>
