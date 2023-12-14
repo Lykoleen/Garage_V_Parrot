@@ -4,26 +4,6 @@ Intutilé de l'**ECF STUDI**:
 
 Vincent Parrot, fort de ses 15 années d'expérience dans la réparation automobile, a ouvert son propre garage à Toulouse en 2021. Depuis 2 ans, il propose une large gamme de services: réparation de la carrosserie et de la mécanique des voitures ainsi que leur entretien régulier pour garantir leur performance et leur sécurité. De plus, le Garage V. Parrot met en vente des véhicules d'occasion afin d'accroître son chiffre d'affaires. Vincent Parrot considère son atelier comme un véritable lieu de confiance pour ses clients et leurs voitures doivent, selon lui, à tout prix être entre de bonnes mains. Bien qu'il fournisse grâce à ses employés un service de qualité et personnalisé à chaque client, Vincent Parrot reconnaît qu'il doit être visible sur internet s'il veut se faire définitivement une place parmi la concurrence. Il a donc contacté l’agence de création de sites web dont vous faites partie pour un premier devis, qu'il a accepté. Vous aurez alors pour mission de créer une application web vitrine pour le Garage V. Parrot, en mettant en avant la qualité des services délivrés par cette récente entreprise.
 
-reabse je voulais pas mettre ça.
-
-## Installer l'appli en local: ⚙️
-
-- Cloner le projet:
-
-    ```
-    git clone https://github.com/Lykoleen/Garage_V_Parrot.git
-    ```
-- Installer les dépendances avec Composer:
-
-    ```
-    composer install
-    ```
-- Importer le fichier `donnees.sql` depuis le dossier `docs` dans votre SGBD. Il contient la création des tables et les données. Le fichier creat_bdd.sql ainsi que toutes les requêtes dans mes models ont été écrit à la main pour valider la compétence sql.
-
-- Pour tester l'insertion d'une nouvelle annonce par exemple. Il y a des images de voitures disponibles dans assets/img.
-
-- Pour tester l'ajout d'un avis client. L'activation d'un avis client n'est pas encore disponible depuis le dashboard de l'administrateur. Il faudra donc modifier directement depuis le SGBD la colonne `is_actif` de la table `avis` et passer la valeur à 1 pour que l'avis soit visible sur le site.
-
 ## Les technos utilisées: 🎨
 
 | Techno | Version |
@@ -33,6 +13,36 @@ reabse je voulais pas mettre ça.
 | MYSQL | 8 . 2 . 0 |
 | Apache | 2 . 4 . 54 |
 | Bootstrap | 5 . 1 . 3 |
+
+## Installer l'appli en local: ⚙️
+
+- **Cloner le projet**:
+
+    ```
+    git clone https://github.com/Lykoleen/Garage_V_Parrot.git
+    ```
+- **Installer les dépendances avec Composer**:
+
+    ```
+    cd Garage_V_Parrot
+    composer install
+    ```
+  
+- Importer le fichier `donnees.sql` depuis le dossier `docs` dans votre SGBD. Il contient la création des tables et les données. Le fichier creat_bdd.sql ainsi que toutes les requêtes dans mes models ont été écrit à la main pour valider la compétence sql.
+
+- Pour tester l'insertion d'une nouvelle annonce par exemple. Il y a des images de voitures disponibles dans assets/img.
+
+- Pour tester l'ajout d'un avis client. L'activation d'un avis client n'est pas encore disponible depuis le dashboard de l'administrateur. Il faudra donc modifier directement depuis le SGBD la colonne `is_actif` de la table `avis` et passer la valeur à 1 pour que l'avis soit visible sur le site.
+
+- **Lancer le serveur PHP intégré:**
+    ```bash
+    php -S localhost:8000 -t public
+    ```
+    Assurez-vous que le serveur pointe vers le dossier `public` pour garantir le bon fonctionnement de l'application.
+
+**Accéder à l'application:**
+   Ouvrir votre navigateur web et aller à l'adresse [http://localhost:8000](http://localhost:8000)
+
 
 ## Tester c'est bien ! Mais quoi ? 🔍
 
